@@ -41,7 +41,7 @@ export const AuthProvider = (props: any) => {
   const navigate = useNavigate();
 
   async function signIn({ email, password }: SignInData): Promise<void> {
-    const { token, user } = signInRequest({ email, password });
+    const { token, user } = await signInRequest({ email, password });
 
     setCookie(null, "petshop_token", token, {
       maxAge: 60 * 60 * 1, // 1 hora,

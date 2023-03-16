@@ -9,7 +9,8 @@ const delay = (amount = 750) => {
   new Promise((resolve) => setTimeout(resolve, amount));
 };
 
-export function signInRequest(data: SignInRequestData) {
+export async function signInRequest(data: SignInRequestData) {
+  await delay();
   const { email } = data;
 
   return {
