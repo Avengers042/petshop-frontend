@@ -9,14 +9,14 @@ const delay = (amount = 750) => {
   new Promise((resolve) => setTimeout(resolve, amount));
 };
 
-export async function signInRequest(data: SignInRequestData) {
-  await delay();
+export function signInRequest(data: SignInRequestData) {
+  const { email } = data;
 
   return {
     token: uuid.toString(),
     user: {
-      name: "Fulano de Tal",
-      email: "fulano@gmail.com",
+      email,
+      name: "Teste",
       avatar_url: "https://www.github.com/wesleyclaudino.png",
     },
   };
