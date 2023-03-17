@@ -1,19 +1,19 @@
-import { Route, Routes } from "@solidjs/router";
-import type { Component } from "solid-js";
+import { Route, Routes } from '@solidjs/router'
+import type { Component } from 'solid-js'
 
-import styles from "./App.module.css";
-import { AuthProvider } from "./contexts/AuthContext";
-import { Dashboard } from "./dashboard";
-import { Login } from "./login";
+import styles from './App.module.css'
+import { AuthProvider } from './contexts/AuthContext'
+import { Dashboard } from './dashboard'
+import { Login } from './login'
 
-function checkCookies() {
-  if (navigator.cookieEnabled == true)
-    console.log("Os cookies estão permitidos");
-  else console.log("Necessário permitir os cookies");
+const checkCookies = (): void => {
+  if (navigator.cookieEnabled) {
+    console.log('Os cookies estão permitidos')
+  } else console.log('Necessário permitir os cookies')
 }
 
 const App: Component = () => {
-  checkCookies();
+  checkCookies()
 
   return (
     <>
@@ -26,7 +26,7 @@ const App: Component = () => {
         </div>
       </AuthProvider>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

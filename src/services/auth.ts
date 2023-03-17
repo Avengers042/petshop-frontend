@@ -1,36 +1,48 @@
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from 'uuid'
+import { type User } from '../contexts/AuthContext'
 
-type SignInRequestData = {
-  email: string;
-  password: string;
-};
+interface SignInRequestData {
+  email: string
+  password: string
+}
 
-const delay = (amount = 750) => {
-  new Promise((resolve) => setTimeout(resolve, amount));
-};
+interface TokenUser {
+  token: string
+  user: User
+}
 
-export async function signInRequest(data: SignInRequestData) {
-  await delay();
-  const { email } = data;
+const delay = async (amount = 750): Promise<void> => {
+  void new Promise((resolve) => setTimeout(resolve, amount))
+}
+
+interface ReturnUser {
+  user: User
+}
+
+export const signInRequest = async (data: SignInRequestData): Promise<TokenUser> => {
+  await delay()
+
+  const { email } = data
 
   return {
     token: uuid.toString(),
     user: {
       email,
-      name: "Teste",
-      avatar_url: "https://www.github.com/wesleyclaudino.png",
-    },
-  };
+      name: 'Teste',
+      avatar_url: 'https://www.github.com/wesleyclaudino.png'
+    }
+  }
 }
 
-export async function recoverUserInformation() {
-  await delay();
+export const recoverUserInformation = async (): Promise<ReturnUser> => {
+  await delay()
+  const user: User = {
+    name: 'Fulano de Tal',
+    email: 'fulano@gmail.com',
+    avatar_url: 'https://www.github.com/wesleyclaudino.png'
+  }
 
   return {
-    user: {
-      name: "Fulano de Tal",
-      email: "fulano@gmail.com",
-      avatar_url: "https://www.github.com/wesleyclaudino.png",
-    },
-  };
+    user: { ...user }
+  }
 }

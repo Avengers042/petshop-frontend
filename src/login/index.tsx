@@ -1,44 +1,47 @@
-import { Alert, Button, Form, FormControl, FormGroup } from "solid-bootstrap";
-import { createSignal, useContext } from "solid-js";
-import { AuthContext } from "../contexts/AuthContext";
+import { Alert, Button, Form, FormControl, FormGroup } from 'solid-bootstrap'
+import { createSignal, type JSX, useContext } from 'solid-js'
+import { AuthContext } from '../contexts/AuthContext'
 
-export function Login() {
-  const { signIn } = useContext(AuthContext);
+export const Login = (): JSX.Element => {
+  const signIn = useContext(AuthContext)?.signIn
+  const [getEmail, setEmail] = createSignal<string>()
+  const [getPassword, setPassword] = createSignal<string>()
 
-  const [getEmail, setEmail] = createSignal<string>();
-  const [getPassword, setPassword] = createSignal<string>();
+  const [getShow, setShow] = createSignal(false)
+  const [getMessage, setMessage] = createSignal('')
 
-  const [getShow, setShow] = createSignal(false);
-  const [getMessage, setMessage] = createSignal("");
+  const capturaEmail = (event: any): void => {
+    setEmail(event.target.value)
+  }
 
-  const capturaEmail = (event: any) => {
-    setEmail(event.target.value);
-  };
+  const capturaSenha = (event: any): void => {
+    setPassword(event.target.value)
+  }
 
-  const capturaSenha = (event: any) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-
-    const user = { email: getEmail() || "error@email", password: getPassword() || "error@password" };
+  const handleSubmit = (event: any): void => {
+    event.preventDefault()
 
     try {
-      await signIn(user);
+      if (getEmail() === null || getPassword() === null) { throw new Error('invalid inputs') }
+      const user = { email: getEmail() ?? 'error@email', password: getPassword() ?? 'error@password' }
 
-      setMessage("Login realizado com sucesso!");
-      setShow(true);
+      if (signIn === undefined || user === undefined) { throw Error('signIn is undefined') }
+
+      const sign = async (): Promise<void> => { await signIn(user) }
+      void sign()
+
+      setMessage('Login realizado com sucesso!')
+      setShow(true)
     } catch (error) {
       if (error instanceof Error) {
-        setMessage(error.message);
-        setShow(true);
+        setMessage(error.message)
+        setShow(true)
       }
     }
 
     setTimeout(() => {
-      setShow(false);
-    }, 5000);
+      setShow(false)
+    }, 5000)
   }
 
   return (
@@ -75,5 +78,5 @@ export function Login() {
         <Button class="w-50" as="input" type="submit" value="Login" />
       </Form>
     </div>
-  );
+  )
 }
