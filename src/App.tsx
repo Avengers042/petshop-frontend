@@ -1,31 +1,26 @@
-import { Route, Routes } from "@solidjs/router";
-import type { Component } from "solid-js";
+import type { Component } from 'solid-js';
 
-import styles from "./App.module.css";
-import { AuthProvider } from "./contexts/AuthContext";
-import { Dashboard } from "./dashboard";
-import { Login } from "./login";
-
-function checkCookies() {
-  if (navigator.cookieEnabled == true)
-    console.log("Os cookies estão permitidos");
-  else console.log("Necessário permitir os cookies");
-}
+import logo from './logo.svg';
+import styles from './App.module.css';
 
 const App: Component = () => {
-  checkCookies();
-
   return (
-    <>
-      <AuthProvider>
-        <div class={styles.App}>
-          <Routes>
-            <Route path="/" component={Login} />
-            <Route path="/dashboard" component={Dashboard} />
-          </Routes>
-        </div>
-      </AuthProvider>
-    </>
+    <div class={styles.App}>
+      <header class={styles.header}>
+        <img src={logo} class={styles.logo} alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          class={styles.link}
+          href="https://github.com/solidjs/solid"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn Solid
+        </a>
+      </header>
+    </div>
   );
 };
 
