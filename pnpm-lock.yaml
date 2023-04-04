@@ -12,6 +12,7 @@ specifiers:
   eslint-plugin-solid: ^0.11.0
   nookies: ^2.5.2
   solid-bootstrap: ^1.0.13
+  solid-icons: ^1.0.4
   solid-js: ^1.6.10
   solid-start: ^0.2.23
   typescript: ^4.9.5
@@ -23,6 +24,7 @@ dependencies:
   '@solidjs/router': 0.7.1_solid-js@1.6.10
   nookies: 2.5.2
   solid-bootstrap: 1.0.13_solid-js@1.6.10
+  solid-icons: 1.0.4_solid-js@1.6.10
   solid-js: 1.6.10
   solid-start: 0.2.23_y3c257os5m5r4m2kyl7pok5vqe
   uuid: 9.0.0
@@ -4196,6 +4198,15 @@ packages:
       solid-bootstrap-core: 1.0.13_solid-js@1.6.10
       solid-js: 1.6.10
       solid-react-transition: 1.0.11_solid-js@1.6.10
+    dev: false
+
+  /solid-icons/1.0.4_solid-js@1.6.10:
+    resolution: {integrity: sha512-gJTp4in3+OYCs9WvDkSLt4Los2unR3Uoder8wjh15GsfP20xiNOLfPTJllXmn+fI8+k3x7bRYtLGIgWd9fUQug==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      solid-js: '*'
+    dependencies:
+      solid-js: 1.6.10
     dev: false
 
   /solid-js/1.6.10:

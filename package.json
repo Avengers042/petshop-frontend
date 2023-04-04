@@ -26,6 +26,7 @@
     "@solidjs/router": "^0.7.1",
     "nookies": "^2.5.2",
     "solid-bootstrap": "^1.0.13",
+    "solid-icons": "^1.0.4",
     "solid-js": "^1.6.10",
     "solid-start": "^0.2.23",
     "uuid": "^9.0.0"
