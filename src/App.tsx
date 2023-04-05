@@ -10,6 +10,7 @@ import { ProductList } from "./pages/product-list";
 import { ProductRegistration } from "./pages/product-registration";
 import { ShoppingCart } from "./pages/shopping-cart";
 import { UserSignup } from "./pages/user-signup";
+import { ProductItem } from "./pages/product-item";
 
 const checkCookies = (): void => {
   if (navigator.cookieEnabled) {
@@ -25,7 +26,7 @@ const App: Component = () => {
       <AuthProvider>
         <div class={styles.App}>
           <Routes>
-            <Route path="/*" component={Dashboard} />
+            <Route path="/*" component={ProductList} />
             <Route path="/login" component={Login} />
             <SignUpProvider>
               <Route path="/user-signup" component={UserSignup} />
@@ -35,7 +36,7 @@ const App: Component = () => {
               path="/product-registration"
               component={ProductRegistration}
             />
-            <Route path="/product-list" component={ProductList} />
+            <Route path="/product-item" component={ProductItem} />
             <Route path="/shopping-cart" component={ShoppingCart} />
           </Routes>
         </div>
