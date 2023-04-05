@@ -1,58 +1,64 @@
-import { Carousel } from "solid-bootstrap";
+import { Carousel, Col, Form, Row, Table } from "solid-bootstrap";
 import { type JSX } from "solid-js";
+import { NavBar } from "../../components/nav-bar";
+import { Footer } from "../../components/footer";
+
+import ListProducts from "./products-cart.json";
 
 export const ShoppingCart = (): JSX.Element => {
   return (
-    <div class="w-50 m-auto">
-      <Carousel>
-        <Carousel.Item>
-          <div
-            class="d-block w-100 bg-secondary d-flex justify-content-center align-items-center"
-            style={{ height: "400px" }}
-          ></div>
-          <Carousel.Caption>
-            <h2>Primeiro produto</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Similique, quos possimus aspernatur accusantium asperiores
-              aliquam, itaque error quia velit impedit nobis animi repellat
-              accusamus. Quos dolorum harum eaque rerum veniam.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div
-            class="d-block w-100 bg-secondary d-flex justify-content-center align-items-center"
-            style={{ height: "400px" }}
-          ></div>
+    <>
+      <NavBar />
 
-          <Carousel.Caption>
-            <h2>Segundo produto</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-              maxime, odio quod voluptatum architecto perspiciatis expedita ab
-              repellendus perferendis provident sit. Pariatur placeat
-              consequuntur ad facere molestiae reprehenderit cumque eligendi.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div
-            class="d-block w-100 bg-secondary d-flex justify-content-center align-items-center"
-            style={{ height: "400px" }}
-          ></div>
+      <div class="body" style="margin-top: 3%;">
+        <h1 class="h1" style="text-align: center;">Carrinho de Compras</h1>
 
-          <Carousel.Caption>
-            <h2>Terceiro produto</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reprehenderit assumenda culpa laboriosam id quasi? Dolorum error
-              ipsam officia, porro consectetur ad deleniti aut, nulla, dolor
-              veritatis odio vel perferendis in!
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-    </div>
+        <div class="w-50 m-auto">
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {ListProducts.map(product =>
+                <tr>
+                  <td><img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" style="height: 80px;" /></td>
+                  <td>{product.name}</td>
+                  <td>{product.price}</td>
+                  <td>{product.quantity}</td>
+                  <td>{product.price * product.quantity}</td>
+                </tr>
+              )}
+            </tbody>
+          </Table>
+
+          <Form>
+            <Row class="mb-3">
+              <Form.Group as={Col} md="5" controlId="name">
+                <Form.Label>Cupom de desconto</Form.Label>
+                <Form.Control type="text" placeholder="Digite seu cupom" required />
+              </Form.Group>
+              <Form.Group as={Col} md="5" controlId="name">
+                <Form.Label>Consultar CEP</Form.Label>
+                <Form.Control type="number" placeholder="Descreva o produto" required />
+              </Form.Group>
+              <Form.Group as={Col} md="1" style='display: flex; align-items: flex-end;'>
+                <button class="btn" style="background-color: black; color: white; width: 110px; border-radius: 100px;" type="submit">
+                  Consultar
+                </button>
+              </Form.Group>
+            </Row>
+          </Form>
+        </div>
+      </div >
+
+      <Footer />
+    </>
   );
 };

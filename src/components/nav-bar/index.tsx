@@ -22,7 +22,7 @@ export const NavBar = (): JSX.Element => {
                 <button class="btn btn-outline" type="submit">
                   <AiOutlineSearch />
                 </button>
-                <button type="button" class="btn"><AiOutlineShoppingCart /> Carrinho de compras</button>
+                <a href="/shopping-cart"><button type="button" class="btn"><AiOutlineShoppingCart /> Carrinho de compras</button></a>
                 <button type="button" class="btn"><IoPersonCircleSharp /> Login<br />Cadastrar</button>
               </form>
             </div>
