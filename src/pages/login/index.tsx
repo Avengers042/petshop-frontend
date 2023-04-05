@@ -60,7 +60,7 @@ export const Login = (): JSX.Element => {
       <NavBar />
 
       <div class="body" style="margin-top: 3%;">
-        <h1 class="h1" style="text-align: center;">
+        <h1 style="text-align: center;">
           Login
         </h1>
 

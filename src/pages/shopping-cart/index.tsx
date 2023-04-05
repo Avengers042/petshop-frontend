@@ -1,11 +1,24 @@
-import { Carousel, Col, Form, Row, Table } from "solid-bootstrap";
-import { type JSX } from "solid-js";
-import { NavBar } from "../../components/nav-bar";
+import { Col, Form, Row, Table } from "solid-bootstrap";
+import { createSignal, type JSX } from "solid-js";
+
 import { Footer } from "../../components/footer";
+import { NavBar } from "../../components/nav-bar";
+
+import "./shopping-cart.css";
 
 import ListProducts from "./products-cart.json";
 
 export const ShoppingCart = (): JSX.Element => {
+  const [getTotalValue, setTotalValue] = createSignal(0);
+
+  ListProducts.forEach(product => {
+    setTotalValue(getTotalValue() + (product.price * product.quantity))
+  })
+
+  function getValueWithMonetaryMask(value: number | string, locale: string, currency: string): string {
+    return value.toLocaleString(locale, { style: 'currency', currency });
+  }
+
   return (
     <>
       <NavBar />
@@ -13,30 +26,42 @@ export const ShoppingCart = (): JSX.Element => {
       <div class="body" style="margin-top: 3%;">
         <h1 class="h1" style="text-align: center;">Carrinho de Compras</h1>
 
-        <div class="w-50 m-auto">
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Nome</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-
-              {ListProducts.map(product =>
+        <div class="content-body">
+          <div class="table" style="display: flex;">
+            <Table striped bordered hover>
+              <thead>
                 <tr>
-                  <td><img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" style="height: 80px;" /></td>
-                  <td>{product.name}</td>
-                  <td>{product.price}</td>
-                  <td>{product.quantity}</td>
-                  <td>{product.price * product.quantity}</td>
+                  <th></th>
+                  <th>Nome</th>
+                  <th>Preço</th>
+                  <th>Quantidade</th>
+                  <th>Total</th>
                 </tr>
-              )}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+
+                {ListProducts.map(product =>
+                  <tr>
+                    <td><img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" style="height: 80px;" /></td>
+                    <td>{product.name}</td>
+                    <td>{getValueWithMonetaryMask(product.price, 'pt-BR', 'BRL')}</td>
+                    <td>{product.quantity}</td>
+                    <td>{getValueWithMonetaryMask(product.price * product.quantity, 'pt-BR', 'BRL')}</td>
+                  </tr>
+                )}
+              </tbody>
+            </Table>
+
+            <div class="total">
+              <h1>TOTAL</h1>
+              <span>{getValueWithMonetaryMask(getTotalValue(), 'pt-BR', 'BRL')}</span>
+
+              <div>
+                <a href="#"><button type="button" class="btn" style="background-color: black; color: white;">Ir para pagamento</button></a>
+                <a href="#"><button type="button" class="btn">Escolher mais produtos</button></a>
+              </div>
+            </div>
+          </div>
 
           <Form>
             <Row class="mb-3">
@@ -56,7 +81,7 @@ export const ShoppingCart = (): JSX.Element => {
             </Row>
           </Form>
         </div>
-      </div >
+      </div>
 
       <Footer />
     </>

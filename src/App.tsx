@@ -25,7 +25,7 @@ const App: Component = () => {
       <AuthProvider>
         <div class={styles.App}>
           <Routes>
-            <Route path="/*" component={Login} />
+            <Route path="/*" component={Dashboard} />
             <Route path="/login" component={Login} />
             <SignUpProvider>
               <Route path="/user-signup" component={UserSignup} />

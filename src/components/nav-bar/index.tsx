@@ -17,13 +17,11 @@ export const NavBar = (): JSX.Element => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: unset !important; margin-left: 24px;">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="display: flex; flex-direction: column;">
             <div class="search">
-              <form class="d-flex" role="search">
+              <form class="d-flex" style="align-items: center;" role="search">
                 <input class="form-control" type="search" placeholder="Pesquise aqui" aria-label="Pesquise aqui" />
-                <button class="btn btn-outline" type="submit">
-                  <AiOutlineSearch />
-                </button>
+                <button class="btn btn-outline" type="submit"> <AiOutlineSearch /> </button>
                 <a href="/shopping-cart"><button type="button" class="btn"><AiOutlineShoppingCart /> Carrinho de compras</button></a>
-                <button type="button" class="btn"><IoPersonCircleSharp /> Login<br />Cadastrar</button>
+                <a href="/login"><button type="button" class="btn"><IoPersonCircleSharp /> Login<br />Cadastrar</button></a>
               </form>
             </div>
 

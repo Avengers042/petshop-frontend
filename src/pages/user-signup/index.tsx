@@ -55,7 +55,7 @@ export const UserSignup = (): JSX.Element => {
       <NavBar />
 
       <div class="body" style="margin-top: 3%;">
-        <h1 class="h1" style="text-align: center;"> Cadastro de Usuário </h1>
+        <h1 style="text-align: center;"> Cadastro de Usuário </h1>
 
         <div class="w-50 m-auto">
           <Alert show={getShow()} variant={getAlertType()}> {getMessage()} </Alert>
