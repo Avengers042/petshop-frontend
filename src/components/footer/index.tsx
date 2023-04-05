@@ -2,20 +2,23 @@ import { type JSX } from "solid-js";
 
 import "./footer.css";
 
+import mastercard_logo from "../../assets/mastercard-logo.webp";
+import visa_logo from "../../assets/visa-logo.webp";
+import american_express_logo from "../../assets/american-express-logo.png";
+import hipercard_logo from "../../assets/hipercard-logo.png";
+import pix_logo from "../../assets/pix-logo.png";
+
 export const Footer = (): JSX.Element => {
   return (
     <footer>
       <section class="infos">
         <div>
           Meios de Pagamento <br />
-          <img src="/src/assets/mastercard-logo.webp" alt="mastercard" style="height: 24px" />
-          <img src="/src/assets/visa-logo.webp" alt="visa" style="height: 24px" />
-          <img
-            src="/src/assets/american-express-logo.png"
-            alt="american express" style="height: 24px"
-          />
-          <img src="/src/assets/hipercard-logo.png" alt="hipercard" style="height: 24px" />
-          <img src="/src/assets/pix-logo.png" alt="pix" style="height: 24px" />
+          <img src={mastercard_logo} alt="mastercard" style="height: 24px" />
+          <img src={visa_logo} alt="visa" style="height: 24px" />
+          <img src={american_express_logo} alt="american express" style="height: 24px" />
+          <img src={hipercard_logo} alt="hipercard" style="height: 24px" />
+          <img src={pix_logo} alt="pix" style="height: 24px" />
         </div>
 
         <div>
@@ -27,7 +30,7 @@ export const Footer = (): JSX.Element => {
       </section>
 
       <section class="copyright">
-      <hr />
+        <hr />
         Todos os direitos reservados &copy 2023 E-Pet LTDA.
       </section>
     </footer>
