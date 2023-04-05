@@ -13,7 +13,7 @@ export const NavBar = (): JSX.Element => {
     <>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="/"><img src={epet_logo} alt="Logo da E-Pet shop" /></Navbar.Brand>
+          <Navbar.Brand href="/"><img class="logo" src={epet_logo} alt="Logo da E-Pet shop" /></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse class="header" id="basic-navbar-nav">
             <div class="header-content">
