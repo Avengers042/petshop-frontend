@@ -1,0 +1,89 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 24px 0;
+}
+
+.list .card-group {
+  display: flex;
+  max-width: 100%;
+}
+
+.list .card-group .card {
+  margin: 16px 8px;
+  padding: 16px 8px;
+  border: none;
+}
+
+.list  .card-group .card:first-child {
+  margin-left: 0;
+}
+
+.list  .card-group .card:last-child {
+  margin-right: 0;
+}
+
+.card-title {
+  font-size: 22px;
+  height: 55px;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.card-subtitle {
+  font-size: 18px;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.card-label {
+  font-size: 14px;
+}
+
+.service {
+  max-width: 240px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.card-button {
+  background-color: black;
+  padding: 10px 5px;
+  border: none;
+  color: white;
+  width: 86px;
+  border-radius: 100px;
+}
+
+.service .card-title {
+  height: auto;
+}
+
+.service .card-button {
+  margin: 8px auto 0;
+}
+
+footer {
+  position: relative;
+}

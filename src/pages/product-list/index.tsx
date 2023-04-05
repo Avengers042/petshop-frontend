@@ -1,58 +1,93 @@
+import { createSignal, type JSX } from "solid-js";
+import { NavBar } from "../../components/nav-bar";
+import { Footer } from "../../components/footer";
+import welcomeOne from "../../assets/welcome-cats-dog-1.jpg";
+import welcomeTwo from "../../assets/welcome-cat-dog-2.jpg";
+import ListProducts from "./products.json";
+import ListServices from "./services.json";
+import "./product-list.css";
 import { Carousel } from "solid-bootstrap";
-import { type JSX } from "solid-js";
 
 export const ProductList = (): JSX.Element => {
   return (
-    <div class="w-50 m-auto">
-      <Carousel>
-        <Carousel.Item>
-          <div
-            class="d-block w-100 bg-secondary d-flex justify-content-center align-items-center"
-            style={{ height: "400px" }}
-          ></div>
-          <Carousel.Caption>
-            <h2>Primeiro produto</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Similique, quos possimus aspernatur accusantium asperiores
-              aliquam, itaque error quia velit impedit nobis animi repellat
-              accusamus. Quos dolorum harum eaque rerum veniam.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div
-            class="d-block w-100 bg-secondary d-flex justify-content-center align-items-center"
-            style={{ height: "400px" }}
-          ></div>
+    <>
+      <NavBar />
+      <main class="container content">
+        <div class="welcome">
+          <Carousel>
+            <Carousel.Item>
+              <div
+                class="d-block w-100 bg-secondary d-flex justify-content-center align-items-center"
+                style={{ height: "320px" }}
+              >
+                <img src={welcomeOne} alt="" />
+              </div>
+            </Carousel.Item>
+            <Carousel.Item>
+              <div
+                class="d-block w-100 bg-secondary d-flex justify-content-center align-items-center"
+                style={{ height: "320px" }}
+              >
+                <img src={welcomeTwo} alt="" />
+              </div>
+            </Carousel.Item>
+          </Carousel>
+        </div>
 
-          <Carousel.Caption>
-            <h2>Segundo produto</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-              maxime, odio quod voluptatum architecto perspiciatis expedita ab
-              repellendus perferendis provident sit. Pariatur placeat
-              consequuntur ad facere molestiae reprehenderit cumque eligendi.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div
-            class="d-block w-100 bg-secondary d-flex justify-content-center align-items-center"
-            style={{ height: "400px" }}
-          ></div>
+        <div class="list">
+          <h1>Nossos serviços</h1>
 
-          <Carousel.Caption>
-            <h2>Terceiro produto</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Reprehenderit assumenda culpa laboriosam id quasi? Dolorum error
-              ipsam officia, porro consectetur ad deleniti aut, nulla, dolor
-              veritatis odio vel perferendis in!
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-    </div>
+          <div class="card-group">
+          {ListServices.map(service =>
+            <div class="service card">
+              <img src={service.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
+              <h2 class="card-title">{service.name}</h2>
+              <h3 class="card-text">{service.description}</h3>
+              <button
+                class="card-button"
+                type="submit"
+              >
+                Contratar
+              </button>
+            </div>
+          )}
+          </div>
+        </div>
+
+        <div class="service-list list">
+          <h1>Gatos</h1>
+
+          <div class="card-group">
+          {ListProducts.map(product =>
+            <div class="card">
+              <img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
+              <h2 class="card-title">{product.name}</h2>
+              <h3 class="card-subtitle">{product.brand}</h3>
+              <p class="card-text">{product.price} - {product.discount}</p>
+            </div>
+          )}
+          </div>
+        </div>
+        
+        <div class="list">
+          <h1>Cachorros</h1>
+
+          <div class="card-group">
+          {ListProducts.map(product =>
+            <div class="card">
+              <img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
+              <h2 class="card-title">{product.name}</h2>
+              <h3 class="card-subtitle">{product.brand}</h3>
+              <div class="card-text">
+                <p>R$ {product.price}</p>
+                <p class="card-label">{product.discount}% OFF</p>
+              </div>
+            </div>
+          )}
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 };
