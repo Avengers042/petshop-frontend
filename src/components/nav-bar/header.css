@@ -1,0 +1,28 @@
+nav {
+    background-color: #F6F8F9;
+}
+
+img {
+    width: 128px; height: 79px;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    width: -webkit-fill-available;
+}
+
+.header-search {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-options {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-links {
+    display: flex;
+    flex-direction: row;
+}

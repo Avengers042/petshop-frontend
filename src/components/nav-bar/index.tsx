@@ -5,101 +5,48 @@ import { IoPersonCircleSharp } from 'solid-icons/io';
 
 import epet_logo from "../../assets/e-pet-logo.png";
 
+import { Container, Nav, NavDropdown, Navbar } from "solid-bootstrap";
+import "./header.css";
+
 export const NavBar = (): JSX.Element => {
   return (
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #F6F8F9;">
-      <div class="container-fluid" style="margin: 0 64px 0 64px;">
-        <a href="/"><img src={epet_logo} alt="imagem" style="width: 128px; height: 79px;" /></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: unset !important; margin-left: 24px;">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="display: flex; flex-direction: column;">
-            <div class="search">
-              <form class="d-flex" style="align-items: center;" role="search">
+    <>
+      <Navbar bg="light" expand="lg">
+        <Container>
+          <Navbar.Brand href="/"><img src={epet_logo} alt="Logo da E-Pet shop" /></Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse class="header" id="basic-navbar-nav">
+            <div class="header-content">
+              <div class="header-search">
                 <input class="form-control" type="search" placeholder="Pesquise aqui" aria-label="Pesquise aqui" />
                 <button class="btn btn-outline" type="submit"> <AiOutlineSearch /> </button>
-                <a href="/shopping-cart"><button type="button" class="btn"><AiOutlineShoppingCart /> Carrinho de compras</button></a>
-                <a href="/login"><button type="button" class="btn"><IoPersonCircleSharp /> Login<br />Cadastrar</button></a>
-              </form>
+              </div>
+              <div class="header-options">
+                <Nav.Link class="button" href="#servicos">Serviços</Nav.Link>
+                <NavDropdown class="button" title="Produtos" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#produto/1">1</NavDropdown.Item>
+                  <NavDropdown.Item href="#produto/2">2</NavDropdown.Item>
+                  <NavDropdown.Item href="#produto/3">3</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#produto/1.4">4</NavDropdown.Item>
+                </NavDropdown>
+                <NavDropdown class="button" title="Categorias" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#categoria/1">1</NavDropdown.Item>
+                  <NavDropdown.Item href="#categoria/2">2</NavDropdown.Item>
+                  <NavDropdown.Item href="#categoria/3">3</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#categoria/3.4">4</NavDropdown.Item>
+                </NavDropdown>
+                <Nav.Link class="button" href="#promocoes">Promoções</Nav.Link>
+              </div>
             </div>
-
-            <div style="display: flex; flex-direction: row;">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
-                  Serviços
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="true"
-                >
-                  Produtos
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="/login">
-                      1
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      3
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="true"
-                >
-                  Categorias
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      1
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      3
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Promoções
-                </a>
-              </li>
+            <div class="header-links">
+              <Nav.Link class="button" href="/shopping-cart"><AiOutlineShoppingCart /> Carrinho de compras</Nav.Link>
+              <Nav.Link class="button" href="/login"><IoPersonCircleSharp /> Login<br />Cadastrar</Nav.Link>
             </div>
-          </ul>
-        </div>
-      </div>
-    </nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar >
+    </>
   );
 };
