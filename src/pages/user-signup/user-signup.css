@@ -1,7 +1,7 @@
 input[type=number_format]::-webkit-inner-spin-button { 
     -webkit-appearance: none;
-    
 }
+
 input[type=number_format] { 
    -moz-appearance: textfield;
    appearance: textfield;
