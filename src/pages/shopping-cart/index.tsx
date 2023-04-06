@@ -60,7 +60,7 @@ export const ShoppingCart = (): JSX.Element => {
 
                   <div>
                     <a href="#"><button type="button" class="btn" style="background-color: black; color: white;">Ir para pagamento</button></a>
-                    <a href="#"><button type="button" class="btn">Escolher mais produtos</button></a>
+                    <a href="/product-list"><button type="button" class="btn">Escolher mais produtos</button></a>
                   </div>
                 </div>
               </div>
