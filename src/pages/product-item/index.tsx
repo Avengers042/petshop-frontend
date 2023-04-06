@@ -1,8 +1,12 @@
-import { Footer } from "../../components/footer"
-import { NavBar } from "../../components/nav-bar"
-import { useNavigate } from "solid-start/router";
+import { Button, Col, Form } from "solid-bootstrap";
 import { createSignal } from "solid-js";
-import { Button, Col, Form, Row } from "solid-bootstrap";
+import { useNavigate } from "solid-start/router";
+
+import { Footer } from "../../components/footer";
+import { NavBar } from "../../components/nav-bar";
+
+import granplus from "/src/assets/granplus-dog.webp";
+
 import "./product-item.css";
 
 export const ProductItem = () => {
@@ -28,7 +32,7 @@ export const ProductItem = () => {
         <div class="container my-5">
           <div class="product-header">
             <div class="image-product">
-              <img src="/src/assets/granplus-dog.webp" alt="Imagem do produto" />
+              <img src={granplus} alt="Imagem do produto" />
             </div>
             <div class="product-main">
               <h1>Ração GranPlus Choice Frango e Carne para Cães Adultos</h1>
