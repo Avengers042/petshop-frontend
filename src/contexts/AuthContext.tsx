@@ -54,7 +54,7 @@ export const AuthProvider = (props: any): JSX.Element => {
 
     if (isAutenticated) {
       console.log('Autenticado com sucesso')
-      navigate('/dashboard', { replace: true })
+      navigate('/product-list', { replace: true })
     } else {
       console.log('Não Autenticado, acesso negado')
     }

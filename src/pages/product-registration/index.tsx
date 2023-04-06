@@ -25,7 +25,7 @@ export const ProductRegistration = (): JSX.Element => {
 
     const form = event.currentTarget;
     if ((form as HTMLFormElement).checkValidity() !== false) {
-      navigate("/dashboard", { replace: true });
+      navigate("/product-list", { replace: true });
     }
     setValidated(true);
   };

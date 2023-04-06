@@ -4,13 +4,12 @@ import type { Component } from "solid-js";
 import styles from "./App.module.css";
 import { AuthProvider } from "./contexts/AuthContext";
 import { SignUpProvider } from "./contexts/SignUpContext";
-import { Dashboard } from "./pages/dashboard";
 import { Login } from "./pages/login";
+import { ProductItem } from "./pages/product-item";
 import { ProductList } from "./pages/product-list";
 import { ProductRegistration } from "./pages/product-registration";
 import { ShoppingCart } from "./pages/shopping-cart";
 import { UserSignup } from "./pages/user-signup";
-import { ProductItem } from "./pages/product-item";
 
 const checkCookies = (): void => {
   if (navigator.cookieEnabled) {
@@ -31,7 +30,7 @@ const App: Component = () => {
             <SignUpProvider>
               <Route path="/user-signup" component={UserSignup} />
             </SignUpProvider>
-            <Route path="/dashboard" component={Dashboard} />
+            {/* <Route path="/dashboard" component={Dashboard} /> */}
             <Route
               path="/product-registration"
               component={ProductRegistration}

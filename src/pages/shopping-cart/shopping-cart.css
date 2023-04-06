@@ -17,3 +17,7 @@
 .content-body {
     margin: 24px 64px;
 }
+
+#shopping-cart footer {
+    position: relative;
+}

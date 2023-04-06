@@ -22,22 +22,14 @@ export const NavBar = (): JSX.Element => {
                 <button class="btn btn-outline" type="submit"> <AiOutlineSearch /> </button>
               </div>
               <div class="header-options">
-                <Nav.Link class="button" href="#servicos">Serviços</Nav.Link>
                 <NavDropdown class="button" title="Produtos" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#produto/1">1</NavDropdown.Item>
-                  <NavDropdown.Item href="#produto/2">2</NavDropdown.Item>
-                  <NavDropdown.Item href="#produto/3">3</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#produto/1.4">4</NavDropdown.Item>
+                  <NavDropdown.Item href="/product-list">Lista de Produtos</NavDropdown.Item>
+                  <NavDropdown.Item href="/product-registration">Cadastrar Produto</NavDropdown.Item>
                 </NavDropdown>
                 <NavDropdown class="button" title="Categorias" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#categoria/1">1</NavDropdown.Item>
-                  <NavDropdown.Item href="#categoria/2">2</NavDropdown.Item>
-                  <NavDropdown.Item href="#categoria/3">3</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#categoria/3.4">4</NavDropdown.Item>
+                  <NavDropdown.Item href="/product-list#cats">Ração para gato</NavDropdown.Item>
+                  <NavDropdown.Item href="/product-list#dogs">Ração para cachorro</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link class="button" href="#promocoes">Promoções</Nav.Link>
               </div>
             </div>
             <div class="header-links">

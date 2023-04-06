@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "strict": true,
     "target": "ESNext",
     "module": "ESNext",
@@ -12,5 +13,6 @@
     "noEmit": true,
     "isolatedModules": true,
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src"]
 }

@@ -38,7 +38,7 @@ export const ProductList = (): JSX.Element => {
           </div>
 
           <div class="service-list list">
-            <h1>Gatos</h1>
+            <h1 id="cats">Gatos</h1>
 
             <div class="card-group">
               {ListProducts.map(product =>
@@ -56,7 +56,7 @@ export const ProductList = (): JSX.Element => {
           </div>
 
           <div class="list">
-            <h1>Cachorros</h1>
+            <h1 id="dogs">Cachorros</h1>
 
             <div class="card-group">
               {ListProducts.map(product =>
