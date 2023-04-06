@@ -8,8 +8,16 @@ import { NavBar } from "../../components/nav-bar/index";
 import "./user-signup.css";
 import { Footer } from "../../components/footer";
 
+interface UF {
+  name: string,
+  acronym: string
+}
+
 export const UserSignup = (): JSX.Element => {
   const signUp = useContext<any>(SignUpContext)?.signUp;
+
+  const [getUfs, setUfs] = createSignal<UF[]>([]);
+  const ufs: UF[] = [];
 
   const [validated, setValidated] = createSignal<boolean>(false);
 
@@ -49,6 +57,36 @@ export const UserSignup = (): JSX.Element => {
     }
     setValidated(true);
   };
+
+  ufs.push({ name: "Acre (AC)", acronym: "AC" });
+  ufs.push({ name: "Alagoas (AL)", acronym: "AL" });
+  ufs.push({ name: "Amapá (AP)", acronym: "AP" });
+  ufs.push({ name: "Amazonas (AM)", acronym: "AM" });
+  ufs.push({ name: "Bahia (BA)", acronym: "BA" });
+  ufs.push({ name: "Ceará (CE)", acronym: "CE" });
+  ufs.push({ name: "Distrito Federal (DF)", acronym: "DF" });
+  ufs.push({ name: "Espírito Santo (ES)", acronym: "ES" });
+  ufs.push({ name: "Goiás (GO)", acronym: "GO" });
+  ufs.push({ name: "Maranhão (MA)", acronym: "MA" });
+  ufs.push({ name: "Mato Grosso (MT)", acronym: "MT" });
+  ufs.push({ name: "Mato Grosso do Sul (MS)", acronym: "MS" });
+  ufs.push({ name: "Minas Gerais (MG)", acronym: "MG" });
+  ufs.push({ name: "Pará (PA)", acronym: "PA" });
+  ufs.push({ name: "Paraíba (PB)", acronym: "PB" });
+  ufs.push({ name: "Paraná (PR)", acronym: "PR" });
+  ufs.push({ name: "Pernambuco (PE)", acronym: "PE" });
+  ufs.push({ name: "Piauí (PI)", acronym: "PI" });
+  ufs.push({ name: "Rio de Janeiro (RJ)", acronym: "RJ" });
+  ufs.push({ name: "Rio Grande do Norte (RN)", acronym: "RN" });
+  ufs.push({ name: "Rio Grande do Sul (RS)", acronym: "RS" });
+  ufs.push({ name: "Rondônia (RO)", acronym: "RO" });
+  ufs.push({ name: "Roraima (RR)", acronym: "RR" });
+  ufs.push({ name: "Santa Catarina (SC)", acronym: "SC" });
+  ufs.push({ name: "São Paulo (SP)", acronym: "SP" });
+  ufs.push({ name: "Sergipe (SE)", acronym: "SE" });
+  ufs.push({ name: "Tocantins (TO)", acronym: "TO" });
+
+  setUfs(ufs);
 
   return (
     <>
@@ -98,9 +136,9 @@ export const UserSignup = (): JSX.Element => {
                   <Form.Group as={Col} md="6" controlId="uf">
                     <Form.Label>UF</Form.Label>
                     <Form.Select aria-label="Unidade Federativa">
-                      <option value="df">Distrito Federal</option>
-                      <option value="bh">Belo Horizonte</option>
-                      <option value="sp">São Paulo</option>
+                      {getUfs().map(uf =>
+                        <option value={uf.acronym}>{uf.name}</option>
+                      )}
                     </Form.Select>
                   </Form.Group>
                 </Row>
