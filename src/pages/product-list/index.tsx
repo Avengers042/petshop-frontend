@@ -2,6 +2,8 @@ import {type JSX } from "solid-js";
 import { NavBar } from "../../components/nav-bar";
 import { Footer } from "../../components/footer";
 import welcomeOne from "/src/assets/welcome-cats-dog-1.webp";
+import granplus from "/src/assets/granplus-dog.webp";
+import services from "/src/assets/services.webp";
 import ListProducts from "./products.json";
 import ListServices from "./services.json";
 import "./product-list.css";
@@ -23,7 +25,7 @@ export const ProductList = (): JSX.Element => {
             <div class="card-group">
               {ListServices.map(service =>
                 <div class="service card">
-                  <img src={service.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
+                  <img src={services} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
                   <h2 class="card-title">{service.name}</h2>
                   <h3 class="card-text">{service.description}</h3>
                   <button
@@ -43,7 +45,7 @@ export const ProductList = (): JSX.Element => {
             <div class="card-group">
               {ListProducts.map(product =>
                 <div class="card">
-                  <img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
+                  <img src={granplus} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
                   <h2 class="card-title"><a href="/product-item">{product.name}</a></h2>
                   <h3 class="card-subtitle">{product.brand}</h3>
                   <div class="card-text">
@@ -61,7 +63,7 @@ export const ProductList = (): JSX.Element => {
             <div class="card-group">
               {ListProducts.map(product =>
                 <div class="card">
-                  <img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
+                  <img src={granplus} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
                   <h2 class="card-title"><a href="/product-item">{product.name}</a></h2>
                   <h3 class="card-subtitle">{product.brand}</h3>
                   <div class="card-text">

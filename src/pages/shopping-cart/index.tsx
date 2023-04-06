@@ -4,6 +4,8 @@ import { createSignal, type JSX } from "solid-js";
 import { Footer } from "../../components/footer";
 import { NavBar } from "../../components/nav-bar";
 
+import granplus from "/src/assets/granplus-dog.webp";
+
 import "./shopping-cart.css";
 
 import ListProducts from "./products-cart.json";
@@ -44,7 +46,7 @@ export const ShoppingCart = (): JSX.Element => {
 
                     {ListProducts.map(product =>
                       <tr>
-                        <td><img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" style="height: 80px;" /></td>
+                        <td><img src={granplus} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" style="height: 80px;" /></td>
                         <td>{product.name}</td>
                         <td>{getValueWithMonetaryMask(product.price, 'pt-BR', 'BRL')}</td>
                         <td>{product.quantity}</td>
