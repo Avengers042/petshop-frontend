@@ -3,7 +3,8 @@ nav {
 }
 
 .logo {
-    width: 128px; height: 79px;
+    width: 128px;
+    height: 79px;
 }
 
 .header-content {
@@ -22,7 +23,24 @@ nav {
     flex-direction: row;
 }
 
+.header-options a {
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
 .header-links {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
+    width: 280px;
+}
+
+.header-links a {
+    color: black;
+    text-align: center;
+}
+
+.header-links img {
+    height: 37px;
 }
