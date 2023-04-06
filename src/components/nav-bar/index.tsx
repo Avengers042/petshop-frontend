@@ -1,11 +1,10 @@
 import { type JSX } from "solid-js";
 
-import { AiOutlineSearch, AiOutlineShoppingCart } from "solid-icons/ai";
-import { IoPersonCircleSharp } from 'solid-icons/io';
+import { AiOutlineSearch } from "solid-icons/ai";
 
-import epet_logo from "../../assets/e-pet-logo.png";
-import shopping_cart_icon from "../../assets/icons/shopping_cart_icon.png";
-import person_icon from "../../assets/icons/person_icon.png";
+import epet_logo from "../../assets/e-pet-logo.webp";
+import shopping_cart_icon from "../../assets/icons/shopping_cart_icon.webp";
+import person_icon from "../../assets/icons/person_icon.webp";
 
 import { Container, Nav, Navbar } from "solid-bootstrap";
 import "./header.css";

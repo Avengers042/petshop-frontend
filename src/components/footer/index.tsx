@@ -4,9 +4,9 @@ import "./footer.css";
 
 import mastercard_logo from "../../assets/mastercard-logo.webp";
 import visa_logo from "../../assets/visa-logo.webp";
-import american_express_logo from "../../assets/american-express-logo.png";
-import hipercard_logo from "../../assets/hipercard-logo.png";
-import pix_logo from "../../assets/pix-logo.png";
+import american_express_logo from "../../assets/american-express-logo.webp";
+import hipercard_logo from "../../assets/hipercard-logo.webp";
+import pix_logo from "../../assets/pix-logo.webp";
 
 export const Footer = (): JSX.Element => {
   return (

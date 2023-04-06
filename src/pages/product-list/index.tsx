@@ -1,7 +1,7 @@
 import {type JSX } from "solid-js";
 import { NavBar } from "../../components/nav-bar";
 import { Footer } from "../../components/footer";
-import welcomeOne from "/src/assets/welcome-cats-dog-1.jpg";
+import welcomeOne from "/src/assets/welcome-cats-dog-1.webp";
 import ListProducts from "./products.json";
 import ListServices from "./services.json";
 import "./product-list.css";
