@@ -25,17 +25,24 @@ export interface AuthContextType {
 export const AuthContext = createContext<AuthContextType>()
 
 export const AuthProvider = (props: any): JSX.Element => {
-  const [getUser, setUser] = createStore<User>({ email: 'error', name: 'error', avatar_url: '' })
+  const [getUser, setUser] = createStore<User>({
+    email: 'error',
+    name: 'error',
+    avatar_url: ''
+  })
   const isAutenticated = Boolean(getUser)
 
   createEffect(() => {
     const { petshop_token: token } = parseCookies()
 
     if (token.length > 0) {
-      recoverUserInformation().then((response) => {
-        setUser(response.user)
-      })
-        .catch(error => { console.log(error) })
+      recoverUserInformation()
+        .then((response) => {
+          setUser(response.user)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }, [])
 

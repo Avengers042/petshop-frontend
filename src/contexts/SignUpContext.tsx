@@ -1,53 +1,53 @@
-import { parseCookies } from "nookies";
-import { createContext, createEffect, type JSX } from "solid-js";
-import { createStore } from "solid-js/store";
-import { useNavigate } from "solid-start/router";
+import { parseCookies } from 'nookies'
+import { createContext, createEffect, type JSX } from 'solid-js'
+import { createStore } from 'solid-js/store'
+import { useNavigate } from 'solid-start/router'
 
-import { recoverUserInformation, signInRequest } from "../services/auth";
+import { recoverUserInformation, signInRequest } from '../services/auth'
 
 interface User {
-  email: string;
-  name: string;
+  email: string
+  name: string
 }
 
 interface SignUpData {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
-export const SignUpContext = createContext();
+export const SignUpContext = createContext()
 
 export const SignUpProvider = (props: any): JSX.Element => {
   const [getUser, setUser] = createStore<User>({
-    email: "error",
-    name: "error",
-  });
-  const registered = Boolean(getUser);
+    email: 'error',
+    name: 'error'
+  })
+  const registered = Boolean(getUser)
 
   createEffect(() => {
-    const { petshop_token: token } = parseCookies();
+    const { petshop_token: token } = parseCookies()
 
     if (token.length > 0) {
       recoverUserInformation()
         .then((response) => {
-          setUser(response.user);
+          setUser(response.user)
         })
         .catch((error) => {
-          console.log(error);
-        });
+          console.log(error)
+        })
     }
-  }, []);
+  }, [])
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  async function signUp({ email, password }: SignUpData): Promise<void> {
-    const { token, user } = await signInRequest({ email, password });
+  async function signUp ({ email, password }: SignUpData): Promise<void> {
+    const { token, user } = await signInRequest({ email, password })
 
     if (registered) {
-      console.log("Cadastrado com sucesso");
-      navigate("/login", { replace: true });
+      console.log('Cadastrado com sucesso')
+      navigate('/login', { replace: true })
     } else {
-      console.log("Não Cadastrado, ocorreu algum erro");
+      console.log('Não Cadastrado, ocorreu algum erro')
     }
   }
 
@@ -55,5 +55,5 @@ export const SignUpProvider = (props: any): JSX.Element => {
     <SignUpContext.Provider value={{ user: getUser, registered, signUp }}>
       {props.children}
     </SignUpContext.Provider>
-  );
-};
+  )
+}
