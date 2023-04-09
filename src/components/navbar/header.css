@@ -37,7 +37,7 @@ header .central .search {
 }
 
 header .central .search button {
-  background-color: #FFF;
+  background-color: #fff;
   border: none;
   border: 1px solid #ccc;
   border-radius: 0 5rem 5rem 0;
@@ -122,5 +122,4 @@ header aside .side-links img {
 
 header aside #login-signup {
   display: flex;
-
 }

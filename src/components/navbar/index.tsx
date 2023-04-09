@@ -1,10 +1,10 @@
 import { type JSX } from 'solid-js'
 
-import shopping_cart_icon from '../../assets/icons/shopping_cart_icon.webp'
-import person_icon from '../../assets/icons/person_icon.webp'
+import shopping_cart_icon from '@assets/icons/shopping_cart_icon.webp'
+import person_icon from '@assets/icons/person_icon.webp'
 import { AiOutlineSearch } from 'solid-icons/ai'
 import { RiSystemArrowDropDownFill } from 'solid-icons/ri'
-import epet_logo from '../../assets/e-pet-logo.webp'
+import epet_logo from '@assets/e-pet-logo.webp'
 import './header.css'
 
 export const NavBar = (): JSX.Element => {
