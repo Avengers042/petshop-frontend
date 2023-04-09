@@ -1,22 +1,22 @@
-import { Col, Form, Row, Table } from "solid-bootstrap";
-import { createSignal, type JSX } from "solid-js";
+import { Col, Form, Row, Table } from 'solid-bootstrap'
+import { createSignal, type JSX } from 'solid-js'
 
-import { Footer } from "../../components/footer";
-import { NavBar } from "../../components/nav-bar";
+import { Footer } from '../../components/footer'
+import { NavBar } from '../../components/navbar'
 
-import "./shopping-cart.css";
+import './shopping-cart.css'
 
-import ListProducts from "./products-cart.json";
+import ListProducts from './products-cart.json'
 
 export const ShoppingCart = (): JSX.Element => {
-  const [getTotalValue, setTotalValue] = createSignal(0);
+  const [getTotalValue, setTotalValue] = createSignal(0)
 
   ListProducts.forEach(product => {
     setTotalValue(getTotalValue() + (product.price * product.quantity))
   })
 
-  function getValueWithMonetaryMask(value: number | string, locale: string, currency: string): string {
-    return value.toLocaleString(locale, { style: 'currency', currency });
+  function getValueWithMonetaryMask (value: number | string, locale: string, currency: string): string {
+    return value.toLocaleString(locale, { style: 'currency', currency })
   }
 
   return (
@@ -89,5 +89,5 @@ export const ShoppingCart = (): JSX.Element => {
         <Footer />
       </main >
     </>
-  );
-};
+  )
+}

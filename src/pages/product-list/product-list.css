@@ -21,11 +21,11 @@
   border: none;
 }
 
-#product-list .list  .card-group .card:first-child {
+#product-list .list .card-group .card:first-child {
   margin-left: 0;
 }
 
-#product-list .list  .card-group .card:last-child {
+#product-list .list .card-group .card:last-child {
   margin-right: 0;
 }
 

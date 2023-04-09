@@ -1,38 +1,38 @@
 #product-item .product-header {
-    display: flex;
+  display: flex;
 }
 
 #product-item .product-header img {
-    max-width: 300px;
+  max-width: 300px;
 }
 
 #product-item .product-header-main {
-    display: flex;
+  display: flex;
 }
 
 #product-item .product-header-main form {
-    width: 50%;
+  width: 50%;
 }
 
 #product-item .buttons {
-    margin-top: 16px;
-    display: inline-flex;
+  margin-top: 16px;
+  display: inline-flex;
 }
 
 #product-item .price {
-    display: flex;
-    align-items: center;
-    height: min-content;
+  display: flex;
+  align-items: center;
+  height: min-content;
 }
 
 #product-item .price p:first-child {
-    margin-right: 8px;
+  margin-right: 8px;
 }
-  
+
 #product-item .price .label {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 #product-item footer {
-    position: relative;
+  position: relative;
 }

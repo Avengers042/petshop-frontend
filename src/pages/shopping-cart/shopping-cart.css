@@ -1,23 +1,23 @@
 .total {
-    margin-left: 20px;
-    padding: 30px;
-    text-align: center;
+  margin-left: 20px;
+  padding: 30px;
+  text-align: center;
 }
 
 .total span {
-    font-size: 57px;
+  font-size: 57px;
 }
 
 .total button {
-    border-radius: 100px;
-    border: 1px solid;
-    margin-top: 16px;
+  border-radius: 100px;
+  border: 1px solid;
+  margin-top: 16px;
 }
 
 .content-body {
-    margin: 24px 64px;
+  margin: 24px 64px;
 }
 
 #shopping-cart footer {
-    position: relative;
+  position: relative;
 }

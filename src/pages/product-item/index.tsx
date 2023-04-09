@@ -1,26 +1,26 @@
-import { Footer } from "../../components/footer"
-import { NavBar } from "../../components/nav-bar"
-import { useNavigate } from "solid-start/router";
-import { createSignal } from "solid-js";
-import { Button, Col, Form, Row } from "solid-bootstrap";
-import "./product-item.css";
+import { Footer } from '../../components/footer'
+import { NavBar } from '../../components/navbar'
+import { useNavigate } from 'solid-start/router'
+import { createSignal } from 'solid-js'
+import { Button, Col, Form, Row } from 'solid-bootstrap'
+import './product-item.css'
 
 export const ProductItem = () => {
-  const [validated, setValidated] = createSignal<boolean>(false);
-  const [url, setNewUrl] = createSignal<string>("/");
+  const [validated, setValidated] = createSignal<boolean>(false)
+  const [url, setNewUrl] = createSignal<string>('/')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSubmit = (event: SubmitEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
+    event.preventDefault()
+    event.stopPropagation()
 
-    const form = event.currentTarget;
-    if ((form as HTMLFormElement).checkValidity() !== false) {
-      navigate(url(), { replace: true });
+    const form = event.currentTarget
+    if ((form as HTMLFormElement).checkValidity()) {
+      navigate(url(), { replace: true })
     }
-    setValidated(true);
-  };
+    setValidated(true)
+  }
   return (
     <>
       <NavBar />
@@ -73,8 +73,8 @@ export const ProductItem = () => {
                   </Form.Group>
 
                   <div class="buttons">
-                    <Button class="rounded-pill" type="submit" variant="dark" style="margin-right: 8px;" onClick={() => setNewUrl("/dashboard")}>Comprar</Button>
-                    <Button class="rounded-pill" type="submit" variant="dark" onClick={() => setNewUrl("/shopping-cart")} >Adicionar ao carrinho</Button>
+                    <Button class="rounded-pill" type="submit" variant="dark" style="margin-right: 8px;" onClick={() => setNewUrl('/dashboard')}>Comprar</Button>
+                    <Button class="rounded-pill" type="submit" variant="dark" onClick={() => setNewUrl('/shopping-cart')} >Adicionar ao carrinho</Button>
                   </div>
                 </Form>
 

@@ -1,72 +1,72 @@
-import { Alert, Button, Col, Form, Row } from "solid-bootstrap";
-import { createSignal, useContext, type JSX } from "solid-js";
-import { useNavigate } from "solid-start/router";
-import { SignUpContext } from "../../contexts/SignUpContext";
-import { NavBar } from "../../components/nav-bar";
-import { Footer } from "../../components/footer";
-import "./product-registration.css";
+import { Alert, Button, Col, Form, Row } from 'solid-bootstrap'
+import { createSignal, useContext, type JSX } from 'solid-js'
+import { useNavigate } from 'solid-start/router'
+import { SignUpContext } from '../../contexts/SignUpContext'
+import { NavBar } from '../../components/navbar'
+import { Footer } from '../../components/footer'
+import './product-registration.css'
 
 interface UF {
-  name: string,
+  name: string
   acronym: string
 }
 
 export const ProductRegistration = (): JSX.Element => {
-  const signUp = useContext<any>(SignUpContext)?.signUp;
+  const signUp = useContext<any>(SignUpContext)?.signUp
 
-  const [getUfs, setUfs] = createSignal<UF[]>([]);
-  const ufs: UF[] = [];
+  const [getUfs, setUfs] = createSignal<UF[]>([])
+  const ufs: UF[] = []
 
-  const [validated, setValidated] = createSignal<boolean>(false);
+  const [validated, setValidated] = createSignal<boolean>(false)
 
-  const [getInput, setInput] = createSignal<string>();
+  const [getInput, setInput] = createSignal<string>()
 
-  const [getShow, setShow] = createSignal(false);
-  const [getMessage, setMessage] = createSignal("");
-  const [getAlertType, setAlertType] = createSignal<string>("danger");
+  const [getShow, setShow] = createSignal(false)
+  const [getMessage, setMessage] = createSignal('')
+  const [getAlertType, setAlertType] = createSignal<string>('danger')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSubmit = (event: SubmitEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
+    event.preventDefault()
+    event.stopPropagation()
 
-    const form = event.currentTarget;
-    if ((form as HTMLFormElement).checkValidity() !== false) {
-      navigate("/product-list", { replace: true });
+    const form = event.currentTarget
+    if ((form as HTMLFormElement).checkValidity()) {
+      navigate('/product-list', { replace: true })
     }
-    setValidated(true);
-  };
+    setValidated(true)
+  }
 
-  ufs.push({ name: "Acre (AC)", acronym: "AC" });
-  ufs.push({ name: "Alagoas (AL)", acronym: "AL" });
-  ufs.push({ name: "Amapá (AP)", acronym: "AP" });
-  ufs.push({ name: "Amazonas (AM)", acronym: "AM" });
-  ufs.push({ name: "Bahia (BA)", acronym: "BA" });
-  ufs.push({ name: "Ceará (CE)", acronym: "CE" });
-  ufs.push({ name: "Distrito Federal (DF)", acronym: "DF" });
-  ufs.push({ name: "Espírito Santo (ES)", acronym: "ES" });
-  ufs.push({ name: "Goiás (GO)", acronym: "GO" });
-  ufs.push({ name: "Maranhão (MA)", acronym: "MA" });
-  ufs.push({ name: "Mato Grosso (MT)", acronym: "MT" });
-  ufs.push({ name: "Mato Grosso do Sul (MS)", acronym: "MS" });
-  ufs.push({ name: "Minas Gerais (MG)", acronym: "MG" });
-  ufs.push({ name: "Pará (PA)", acronym: "PA" });
-  ufs.push({ name: "Paraíba (PB)", acronym: "PB" });
-  ufs.push({ name: "Paraná (PR)", acronym: "PR" });
-  ufs.push({ name: "Pernambuco (PE)", acronym: "PE" });
-  ufs.push({ name: "Piauí (PI)", acronym: "PI" });
-  ufs.push({ name: "Rio de Janeiro (RJ)", acronym: "RJ" });
-  ufs.push({ name: "Rio Grande do Norte (RN)", acronym: "RN" });
-  ufs.push({ name: "Rio Grande do Sul (RS)", acronym: "RS" });
-  ufs.push({ name: "Rondônia (RO)", acronym: "RO" });
-  ufs.push({ name: "Roraima (RR)", acronym: "RR" });
-  ufs.push({ name: "Santa Catarina (SC)", acronym: "SC" });
-  ufs.push({ name: "São Paulo (SP)", acronym: "SP" });
-  ufs.push({ name: "Sergipe (SE)", acronym: "SE" });
-  ufs.push({ name: "Tocantins (TO)", acronym: "TO" });
+  ufs.push({ name: 'Acre (AC)', acronym: 'AC' })
+  ufs.push({ name: 'Alagoas (AL)', acronym: 'AL' })
+  ufs.push({ name: 'Amapá (AP)', acronym: 'AP' })
+  ufs.push({ name: 'Amazonas (AM)', acronym: 'AM' })
+  ufs.push({ name: 'Bahia (BA)', acronym: 'BA' })
+  ufs.push({ name: 'Ceará (CE)', acronym: 'CE' })
+  ufs.push({ name: 'Distrito Federal (DF)', acronym: 'DF' })
+  ufs.push({ name: 'Espírito Santo (ES)', acronym: 'ES' })
+  ufs.push({ name: 'Goiás (GO)', acronym: 'GO' })
+  ufs.push({ name: 'Maranhão (MA)', acronym: 'MA' })
+  ufs.push({ name: 'Mato Grosso (MT)', acronym: 'MT' })
+  ufs.push({ name: 'Mato Grosso do Sul (MS)', acronym: 'MS' })
+  ufs.push({ name: 'Minas Gerais (MG)', acronym: 'MG' })
+  ufs.push({ name: 'Pará (PA)', acronym: 'PA' })
+  ufs.push({ name: 'Paraíba (PB)', acronym: 'PB' })
+  ufs.push({ name: 'Paraná (PR)', acronym: 'PR' })
+  ufs.push({ name: 'Pernambuco (PE)', acronym: 'PE' })
+  ufs.push({ name: 'Piauí (PI)', acronym: 'PI' })
+  ufs.push({ name: 'Rio de Janeiro (RJ)', acronym: 'RJ' })
+  ufs.push({ name: 'Rio Grande do Norte (RN)', acronym: 'RN' })
+  ufs.push({ name: 'Rio Grande do Sul (RS)', acronym: 'RS' })
+  ufs.push({ name: 'Rondônia (RO)', acronym: 'RO' })
+  ufs.push({ name: 'Roraima (RR)', acronym: 'RR' })
+  ufs.push({ name: 'Santa Catarina (SC)', acronym: 'SC' })
+  ufs.push({ name: 'São Paulo (SP)', acronym: 'SP' })
+  ufs.push({ name: 'Sergipe (SE)', acronym: 'SE' })
+  ufs.push({ name: 'Tocantins (TO)', acronym: 'TO' })
 
-  setUfs(ufs);
+  setUfs(ufs)
 
   return (
     <>
@@ -247,5 +247,5 @@ export const ProductRegistration = (): JSX.Element => {
       </main>
 
     </>
-  );
-};
+  )
+}
