@@ -1,0 +1,30 @@
+#login {
+  margin: 64px auto;
+}
+
+#login h1 {
+  text-align: center;
+}
+
+#login a {
+  text-decoration: none;
+}
+
+#login form{
+  display: flex;
+  flex-direction: column;
+  max-width: 512px;
+  margin: 0 auto;
+}
+
+#login .input-field:nth-child(2) {
+  margin-bottom: 0;
+}
+
+#login .label {
+  margin: 8px 0 8px auto;
+}
+
+#login .signup {
+  margin-top: 8px;
+}
