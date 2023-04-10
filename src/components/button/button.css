@@ -1,0 +1,8 @@
+.black {
+  padding: 0.5rem 1.2rem;
+  border-radius: 100px;
+  background-color: #000;
+  color: #FFF;
+  border: none;
+  max-width: min-content;
+}

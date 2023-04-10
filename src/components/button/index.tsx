@@ -1,9 +1,15 @@
 import { type JSX } from 'solid-js'
+import './button.css'
 
-export const Button = (props: any): JSX.Element => {
-  const { message, type } = props
+interface ButtonProps extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
+  text: string
+  className: string
+}
+
+export const Button = (props: ButtonProps): JSX.Element => {
+  const { text, type, className } = props
 
   return (
-    <button type={type}>{message}</button>
+    <button type={type} class={className}>{text}</button>
   )
 }
