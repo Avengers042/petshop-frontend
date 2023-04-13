@@ -2,9 +2,9 @@ import { Route, Routes } from '@solidjs/router'
 import type { Component } from 'solid-js'
 
 import { Login } from './pages/login'
+import { ProductList } from './pages/product-list'
 /* import { SignUpProvider } from './contexts/SignUpContext'
 import { ProductItem } from './pages/product-item'
-import { ProductList } from './pages/product-list'
 import { ProductRegistration } from './pages/product-registration'
 import { ShoppingCart } from './pages/shopping-cart'
 import { UserSignup } from './pages/user-signup' */
@@ -22,8 +22,8 @@ const App: Component = () => {
     <>
       <Routes>
         <Route path="/login" component={Login} />
-        {/* <Route path="/*" component={ProductList} />
-            <SignUpProvider>
+        <Route path="/*" component={ProductList} />
+        {/* <SignUpProvider>
               <Route path="/user-signup" component={UserSignup} />
             </SignUpProvider>
             <Route
