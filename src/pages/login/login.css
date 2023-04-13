@@ -27,6 +27,4 @@
 
 #login .container .signup {
   margin-top: 8px;
-  overflow: hidden;
-  text-overflow: clip;
 }
