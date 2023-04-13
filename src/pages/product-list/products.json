@@ -3,6 +3,7 @@
     "id": 1,
     "image": "/src/assets/granplus-dog.webp",
     "name": "Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz",
+    "alt": "Ração para cachorro adulto",
     "price": 119.99,
     "brand": "Royal Canin",
     "discount": 10
@@ -11,6 +12,7 @@
     "id": 2,
     "image": "/src/assets/granplus-dog.webp",
     "name": "Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz",
+    "alt": "Ração para cachorro adulto",
     "price": 119.99,
     "brand": "Royal Canin",
     "discount": 10
@@ -19,6 +21,7 @@
     "id": 3,
     "image": "/src/assets/granplus-dog.webp",
     "name": "Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz",
+    "alt": "Ração para cachorro adulto",
     "price": 119.99,
     "brand": "Royal Canin",
     "discount": 10
@@ -27,6 +30,7 @@
     "id": 4,
     "image": "/src/assets/granplus-dog.webp",
     "name": "Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz",
+    "alt": "Ração para cachorro adulto",
     "price": 119.99,
     "brand": "Royal Canin",
     "discount": 10
@@ -35,6 +39,7 @@
     "id": 5,
     "image": "/src/assets/granplus-dog.webp",
     "name": "Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz",
+    "alt": "Ração para cachorro adulto",
     "price": 119.99,
     "brand": "Royal Canin",
     "discount": 10

@@ -3,30 +3,35 @@
     "id": 1,
     "image": "/src/assets/services.webp",
     "name": "Hospedagem",
+    "alt": "Imagem contendo o tipo de serviço da hospedagem",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
     "id": 2,
     "image": "/src/assets/services.webp",
     "name": "Hospedagem",
+    "alt": "Imagem contendo o tipo de serviço da hospedagem",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
     "id": 3,
     "image": "/src/assets/services.webp",
     "name": "Hospedagem",
+    "alt": "Imagem contendo o tipo de serviço da hospedagem",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
     "id": 4,
     "image": "/src/assets/services.webp",
     "name": "Hospedagem",
+    "alt": "Imagem contendo o tipo de serviço da hospedagem",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
     "id": 5,
     "image": "/src/assets/services.webp",
     "name": "Hospedagem",
+    "alt": "Imagem contendo o tipo de serviço da hospedagem",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   }
 ]
