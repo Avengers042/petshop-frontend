@@ -15,7 +15,7 @@ header li a {
 header .container {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 0 0.5rem;
+  padding: 1rem 0 0.7rem;
 }
 
 header .logo img {
@@ -42,6 +42,8 @@ header .central .search button {
   border: 1px solid #ccc;
   border-radius: 0 5rem 5rem 0;
   border-left: none;
+  padding: 8px;
+  cursor: pointer;
 }
 
 header .central .search button svg {
@@ -56,6 +58,7 @@ header .central .search input {
   border: 1px solid #ccc;
   border-radius: 5rem 0 0 5rem;
   border-right: none;
+  padding: 8px inherit;
 }
 
 header .central nav {
@@ -80,11 +83,20 @@ header .central nav a svg {
   width: 1.4rem;
 }
 
+header .central nav .dropdown-menu {
+  display: none;
+  background-color: white;
+  border-radius: 0;
+  padding: 0;
+  z-index: 20;
+}
+
 header .central nav .dropdown:hover .dropdown-menu {
   display: flex;
   flex-direction: column;
-  border-radius: 0;
-  padding: 0;
+  position: absolute;
+  padding: 0.4rem 0;
+  border: 1px solid #ccc;
 }
 
 header .central nav .dropdown:hover .dropdown-menu li {

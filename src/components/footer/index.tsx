@@ -12,7 +12,7 @@ export const Footer = (): JSX.Element => {
   return (
     <footer>
       <section class="infos container">
-        <div>
+        <div class="payment">
           <h3>Meios de Pagamento</h3>
           <img src={mastercard_logo} alt="mastercard" />
           <img src={visa_logo} alt="visa" />
@@ -27,7 +27,7 @@ export const Footer = (): JSX.Element => {
         <div>
           <p>Ecommerce Petshop LTDA.</p>
           <p>CNPJ: 00.000.000/0000-00</p>
-          <p>SIGA Área Especial para Indústria Lote 2/3, Sce St. Leste Industrial -           Gama, Brasília - DF, 72445-020, Brazil</p>
+          <p>SIGA Área Especial para Indústria Lote 2/3, Sce St. Leste Industrial - Gama, Brasília - DF, 72445-020, Brazil</p>
         </div>
       </section>
 

@@ -12,7 +12,7 @@ export const NavBar = (): JSX.Element => {
     <header>
       <div class="container">
         <div class="logo">
-          <img src={epet_logo} alt="Logo da E-Pet" />
+          <a href="/"><img src={epet_logo} alt="Logo da E-Pet" /></a>
         </div>
 
         <div class="central">
@@ -24,9 +24,9 @@ export const NavBar = (): JSX.Element => {
           <nav>
             <li><a href="#">Serviços</a></li>
             <li class="dropdown">
-              <a href="#">Produtos <RiSystemArrowDropDownFill /></a>
+              <a href="/">Produtos <RiSystemArrowDropDownFill /></a>
               <ul class="dropdown-menu">
-                <li><a href="#produtos">Listagem de produtos</a></li>
+                <li><a href="/">Listagem de produtos</a></li>
                 <li><a href="#cadastro-produtos">Cadastrar produtos</a></li>
               </ul>
             </li>
@@ -44,7 +44,7 @@ export const NavBar = (): JSX.Element => {
             <img src={person_icon} alt="side-links" />
             <div>
               <li><a href="#">Cadastro</a></li>
-              <li><a href="#">Login</a></li>
+              <li><a href="/login">Login</a></li>
             </div>
           </div>
         </aside>

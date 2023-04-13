@@ -1,16 +1,24 @@
 footer {
-  padding-top: 24px;
   width: 100%;
-  background-color: #f8f9fa;
-  border-top: 1px solid #ccc;
   flex-shrink: 0;
-  text-align: center;
+  padding-top: 24px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+footer p {
+  line-height: normal;
 }
 
 footer .infos {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
+  text-align: left;
+  margin: 24px auto 16px;
+}
+
+footer .infos .payment h3 {
+  margin-bottom: 8px;
 }
 
 footer .infos img {
@@ -22,21 +30,11 @@ footer .infos img:last-child {
   margin-right: 0;
 }
 
-footer .infos div:nth-child(2) p {
-  margin-bottom: 0.2rem;
-  text-align: left;
-}
-
-footer .infos div:nth-child(2) p:last-child {
-  margin-bottom: 0;
-}
-
 section.copyright {
-  border-top: 1px solid #ccc;
-  padding: 0;
+  border-top: 1px solid #e9ecef;
 }
 
 section.copyright p {
   text-align: left;
-  margin: 0.5rem 0;
+  margin: 12px 0;
 }
