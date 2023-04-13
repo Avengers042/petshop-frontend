@@ -1,0 +1,43 @@
+.card {
+  margin: 16px 8px;
+  border: none;
+}
+
+.card-group .card:first-child {
+  margin-left: 0;
+}
+
+.card-group .card:last-child {
+  margin-right: 0;
+}
+
+.card img {
+  width: 100%;
+}
+
+.card-title {
+  font-size: 22px;
+  margin-top: 8px;
+}
+
+.card-title a {
+  text-decoration: none;
+  color: black;
+}
+
+.card-subtitle {
+  font-size: 18px;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.card-label {
+  font-size: 14px;
+}
