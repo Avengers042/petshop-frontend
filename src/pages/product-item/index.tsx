@@ -1,17 +1,19 @@
 import { Footer } from '../../components/footer'
 import { NavBar } from '../../components/navbar'
-import { useNavigate } from 'solid-start/router'
-import { createSignal } from 'solid-js'
-import { Button, Col, Form, Row } from 'solid-bootstrap'
+import { type JSX } from 'solid-js'
+import { Image } from '../../components/image'
+import { Form } from '../../components/form'
+import { FormField } from '../../components/form/form-field'
+import { Button } from '../../components/button'
 import './product-item.css'
 
-export const ProductItem = () => {
-  const [validated, setValidated] = createSignal<boolean>(false)
+export const ProductItem = (): JSX.Element => {
+/*   const [validated, setValidated] = createSignal<boolean>(false)
   const [url, setNewUrl] = createSignal<string>('/')
 
   const navigate = useNavigate()
 
-  const handleSubmit = (event: SubmitEvent) => {
+  const handleSubmit = (event: SubmitEvent): void => {
     event.preventDefault()
     event.stopPropagation()
 
@@ -20,61 +22,35 @@ export const ProductItem = () => {
       navigate(url(), { replace: true })
     }
     setValidated(true)
-  }
+  } */
   return (
     <>
       <NavBar />
       <main id="product-item">
-        <div class="container my-5">
+        <div class="container">
           <div class="product-header">
             <div class="image-product">
-              <img src="/src/assets/granplus-dog.webp" alt="Imagem do produto" />
+              <Image alt='Imagem do produto Ração para cachorro adulto' url='granplus-dog_tzvqbg' />
             </div>
             <div class="product-main">
               <h1>Ração GranPlus Choice Frango e Carne para Cães Adultos</h1>
 
               <div class="product-header-main">
-                <Form noValidate validated={validated()} onSubmit={handleSubmit}>
-                  <Form.Group as={Col} md="12" controlId="productName">
-                    <Form.Label>Tamanhos</Form.Label>
-                    <Form.Check
-                      id="weight-10"
-                      type="radio"
-                      name="weight"
-                      label="10 kg"
-                      required
-                    />
-                    <Form.Check
-                      id="weight-15"
-                      type="radio"
-                      name="weight"
-                      label="15 kg"
-                      required
-                    />
-                    <Form.Check
-                      id="weight-20"
-                      type="radio"
-                      name="weight"
-                      label="20 kg"
-                      required
-                    />
-                  </Form.Group>
-                  <Form.Group as={Col} md="3" controlId="amount">
-                    <Form.Label>Quantidade</Form.Label>
-                    <Form.Control
-                      id="amount"
-                      type="number"
-                      name="amount"
-                      class="form-control"
-                      value="1"
-                      maxlength="3"
-                      required
-                    />
-                  </Form.Group>
+                <Form>
+                  <div class="weight">
+                    <p>Tamanhos</p>
+                    <FormField id='weight-10' type='radio' text='10 kg' name='weight' required />
+                    <FormField id='weight-15' type='radio' text='15 kg' name='weight' required />
+                    <FormField id='weight-20' type='radio' text='20 kg' name='weight' required />
+                  </div>
+
+                  <div class="amount">
+                    <FormField id='amount' type='number' text='Quantidade' value='1' name='amount' required />
+                  </div>
 
                   <div class="buttons">
-                    <Button class="rounded-pill" type="submit" variant="dark" style="margin-right: 8px;" onClick={() => setNewUrl('/dashboard')}>Comprar</Button>
-                    <Button class="rounded-pill" type="submit" variant="dark" onClick={() => setNewUrl('/shopping-cart')} >Adicionar ao carrinho</Button>
+                    <Button type='submit' text='Comprar' className='black' />
+                    <Button type='submit' text='Adicionar ao carrinho' className='black' />
                   </div>
                 </Form>
 
@@ -91,8 +67,8 @@ export const ProductItem = () => {
             <p>Fusce finibus consequat mollis. Aliquam finibus lectus nec velit accumsan, a eleifend elit fringilla. Mauris at lacus sit amet nisl malesuada tempor. Aliquam erat volutpat. In consectetur pellentesque tempus. Praesent a lorem in risus gravida bibendum et in orci. Sed ante justo, ornare et tortor at, auctor ullamcorper lectus. Praesent enim sapien, pellentesque sit amet justo ut, pharetra ullamcorper libero. Aliquam pellentesque, urna eget faucibus pulvinar, arcu est tempor sem, ut condimentum odio risus non odio. Donec pulvinar mi non eros accumsan cursus. Integer risus est, tristique molestie eleifend sit amet, elementum bibendum risus. Vestibulum volutpat nibh in iaculis convallis. Proin imperdiet aliquam massa, ut semper dui.</p>
           </div>
         </div>
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }
