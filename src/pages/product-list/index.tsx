@@ -2,11 +2,11 @@ import { type JSX } from 'solid-js'
 import { NavBar } from '../../components/navbar'
 import { Footer } from '../../components/footer'
 import { Button } from '../../components/button'
-import welcomeOne from '@assets/welcome-cats-dog-1.webp'
 import ListProducts from './products.json'
 import ListServices from './services.json'
 import { CardGroup } from '../../components/card-group'
 import { Card } from '../../components/card-group/card'
+import { Image } from '../../components/image'
 import './product-list.css'
 
 export const ProductList = (): JSX.Element => {
@@ -16,7 +16,7 @@ export const ProductList = (): JSX.Element => {
       <main id="product-list" class="content">
         <div class="container">
           <div class="welcome">
-            <img src={welcomeOne} alt="2 gatos brincando um cachorro" />
+            <Image url="welcome-cats-dog-1_buntnm" alt="2 gatos brincando um cachorro" />
           </div>
 
           <div class="list">
@@ -25,7 +25,7 @@ export const ProductList = (): JSX.Element => {
             <CardGroup>
               {ListServices.map(service =>
                 <Card className="service">
-                  <img src={service.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
+                  <Image url={service.image} alt={service.alt} />
                   <h2 class="card-title">{service.name}</h2>
                   <h3 class="card-text">{service.description}</h3>
                   <Button className='black' type='submit' text='Contratar'/>
@@ -40,7 +40,7 @@ export const ProductList = (): JSX.Element => {
             <CardGroup>
               {ListProducts.map(product =>
                 <Card className='product'>
-                  <img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
+                  <Image url={product.image} alt={product.alt} />
                   <h2 class="card-title"><a href="/product-item">{product.name}</a></h2>
                   <h3 class="card-subtitle">{product.brand}</h3>
                   <div class="card-text">
@@ -58,7 +58,7 @@ export const ProductList = (): JSX.Element => {
             <CardGroup>
               {ListProducts.map(product =>
                 <Card className='product'>
-                  <img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" />
+                  <Image url={product.image} alt={product.alt} />
                   <h2 class="card-title"><a href="/product-item">{product.name}</a></h2>
                   <h3 class="card-subtitle">{product.brand}</h3>
                   <div class="card-text">
