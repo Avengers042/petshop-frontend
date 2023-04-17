@@ -16,8 +16,8 @@ export const Login = (): JSX.Element => {
 
           <section class="form">
             <Form>
-              <FormField id="email" name="email" type="email" text="Email" placeholder="Email do usuário" />
-              <FormField id="password" name="password" type="password" text="Senha" placeholder="Senha do usuário" />
+              <FormField id="email" name="email" type="email" text="Email" placeholder="Email do usuário" required />
+              <FormField id="password" name="password" type="password" text="Senha" placeholder="Senha do usuário" required />
               <a href="#" class="label">Esqueci a senha</a>
 
               <Button className="black" type="submit" text="Entrar" />
