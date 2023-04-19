@@ -26,7 +26,7 @@ export const ProductItem = (): JSX.Element => {
   return (
     <>
       <NavBar />
-      <main id="product-item">
+      <main id="product-item" class="content">
         <div class="container">
           <div class="product-header">
             <div class="image-product">
