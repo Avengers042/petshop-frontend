@@ -1,15 +1,39 @@
-main > h1 {
-  margin-top: 64px;
+#product-registration {
+  margin: 64px auto;
 }
 
-#product-registration footer {
-  position: relative;
+#product-registration h1 {
+  text-align: center;
 }
 
-#product-registration .button {
-  background-color: black;
-  padding: auto 15px;
-  border: none;
-  color: white;
-  border-radius: 100px;
+#product-registration > p {
+  text-align: center;
+  margin-top: 24px;
+}
+
+#product-registration form {
+  margin: 16px auto;
+  max-width: 512px;
+}
+
+#product-registration form .inline-field .number {
+  width: 25%;
+}
+
+#product-registration form .inline-field {
+  display: inline-flex;
+  width: 100%;
+}
+
+#product-registration form .inline-field .input-field:first-child {
+  margin-right: 8px;
+}
+
+#product-registration form > div {
+  margin-top: 24px;
+}
+
+#product-registration form button {
+  display: flex;
+  margin: 48px 0 0 auto;
 }
