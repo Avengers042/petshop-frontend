@@ -27,7 +27,7 @@ export const NavBar = (): JSX.Element => {
               <a href="/">Produtos <RiSystemArrowDropDownFill /></a>
               <ul class="dropdown-menu">
                 <li><a href="/">Listagem de produtos</a></li>
-                <li><a href="#cadastro-produtos">Cadastrar produtos</a></li>
+                <li><a href="/product-registration">Cadastrar produtos</a></li>
               </ul>
             </li>
             <li><a href="#">Categorias</a></li>
