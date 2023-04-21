@@ -5,8 +5,8 @@ import { Login } from './pages/login'
 import { ProductList } from './pages/product-list'
 import { ProductItem } from './pages/product-item'
 import { ProductRegistration } from './pages/product-registration'
-/* import { SignUpProvider } from './contexts/SignUpContext'
 import { ShoppingCart } from './pages/shopping-cart'
+/* import { SignUpProvider } from './contexts/SignUpContext'
 import { UserSignup } from './pages/user-signup' */
 
 const checkCookies = (): void => {
@@ -24,14 +24,12 @@ const App: Component = () => {
         <Route path="/login" component={Login} />
         <Route path="/*" component={ProductList} />
         <Route path="/product-item" component={ProductItem} />
-        <Route
-          path="/product-registration"
-          component={ProductRegistration}
-        />
+        <Route path="/product-registration" component={ProductRegistration} />
+        <Route path="/shopping-cart" component={ShoppingCart} />
         {/* <SignUpProvider>
               <Route path="/user-signup" component={UserSignup} />
             </SignUpProvider>
-            <Route path="/shopping-cart" component={ShoppingCart} /> */}
+            */}
       </Routes>
     </>
   )
