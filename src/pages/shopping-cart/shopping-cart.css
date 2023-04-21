@@ -1,23 +1,93 @@
-.total {
-  margin-left: 20px;
-  padding: 30px;
+#shopping-cart {
+  margin: 64px auto;
+}
+
+#shopping-cart h1 {
   text-align: center;
+  margin-bottom: 24px;
 }
 
-.total span {
-  font-size: 57px;
+#shopping-cart article {
+  display: inline-flex;
 }
 
-.total button {
-  border-radius: 100px;
-  border: 1px solid;
+#shopping-cart article aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 36px;
+}
+
+#shopping-cart article aside p {
+  font-size: 3rem;
+}
+
+#shopping-cart article aside .btn {
   margin-top: 16px;
 }
 
-.content-body {
-  margin: 24px 64px;
+#shopping-cart table {
+  width: 100%;
 }
 
-#shopping-cart footer {
-  position: relative;
+#shopping-cart table tbody {
+  border-block: 2px solid #000;
+}
+
+#shopping-cart table tr {
+  display: grid;
+  grid-template-columns: 80px auto repeat(3, 96px);
+}
+
+#shopping-cart table thead tr {
+  padding-block: 8px;
+}
+
+#shopping-cart table tbody tr {
+  margin: 8px auto;
+}
+
+#shopping-cart table tbody tr:nth-child(odd) td:nth-child(n + 2) {
+  background-color: #ddd;
+}
+
+#shopping-cart table tbody tr:hover td:nth-child(n + 2) {
+  background-color: #ccc;
+}
+
+#shopping-cart table tbody tr:last-of-type {
+  margin-bottom: 0;
+}
+
+#shopping-cart table th {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#shopping-cart table tbody tr td:not(:first-child) {
+  padding: 8px;
+}
+
+#shopping-cart table tbody td:nth-child(n + 3) {
+  text-align: center;
+}
+
+#shopping-cart table img {
+  max-height: 80px;
+}
+
+#shopping-cart form {
+  width: 100%;
+  margin-top: 24px;
+  display: inline-flex;
+}
+
+#shopping-cart form .input-field {
+  margin-bottom: 0;
+  margin-right: 8px;
+}
+
+#shopping-cart form .btn {
+  height: 44px;
+  margin-top: auto;
 }

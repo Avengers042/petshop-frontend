@@ -1,93 +1,131 @@
-import { Col, Form, Row, Table } from 'solid-bootstrap'
-import { createSignal, type JSX } from 'solid-js'
-
+import { createMemo, For, Suspense, type JSX, createSignal } from 'solid-js'
 import { Footer } from '../../components/footer'
 import { NavBar } from '../../components/navbar'
+import ListProducts from './products-cart.json'
+import { LazyImage } from '../../components/lazy-image'
+import { Table } from '../../components/table'
+import { Thead } from '../../components/table/thead'
+import { Tr } from '../../components/table/tr'
+import { Td } from '../../components/table/tr/td'
+import { Th } from '../../components/table/tr/th'
+import { Tbody } from '../../components/table/tbody'
+import { Form } from '../../components/form'
+import { FormField } from '../../components/form/form-field'
+import { Button } from '../../components/button'
 
 import './shopping-cart.css'
 
-import ListProducts from './products-cart.json'
-
 export const ShoppingCart = (): JSX.Element => {
   const [getTotalValue, setTotalValue] = createSignal(0)
+  const products = createMemo(() => ListProducts, [])
 
-  ListProducts.forEach(product => {
-    setTotalValue(getTotalValue() + (product.price * product.quantity))
+  const getValueWithMonetaryMask = (
+    value: number,
+    locale: string,
+    currency: string
+  ): string => value.toLocaleString(locale, { style: 'currency', currency })
+
+  products().forEach((product) => {
+    setTotalValue(getTotalValue() + product.price * product.quantity)
   })
-
-  function getValueWithMonetaryMask (value: number | string, locale: string, currency: string): string {
-    return value.toLocaleString(locale, { style: 'currency', currency })
-  }
 
   return (
     <>
       <NavBar />
 
-      <main id="shopping-cart">
-        <div class="container">
-          <div class="body" style="margin-top: 3%;">
-            <h1 class="h1" style="text-align: center;">Carrinho de Compras</h1>
+      <main id="shopping-cart" class="container content">
+        <h1>Carrinho de compras</h1>
+        <article>
+          <Table>
+            <Thead>
+              <Tr>
+                <Th> </Th>
+                <Th>Nome</Th>
+                <Th>Preço</Th>
+                <Th>Quantidade</Th>
+                <Th>Total</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              <For each={products()}>
+                {(product) => (
+                  <Tr>
+                    <Td>
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <LazyImage
+                          url={product.image}
+                          alt={product.alt}
+                          type="remote"
+                        />
+                      </Suspense>
+                    </Td>
+                    <Td>
+                      <p>{product.name}</p>
+                    </Td>
+                    <Td>
+                      <p>
+                        {getValueWithMonetaryMask(
+                          product.price,
+                          'pt-BR',
+                          'BRL'
+                        )}
+                      </p>
+                    </Td>
+                    <Td>
+                      <p>{product.quantity}</p>
+                    </Td>
+                    <Td>
+                      <p>
+                        {getValueWithMonetaryMask(
+                          product.price * product.quantity,
+                          'pt-BR',
+                          'BRL'
+                        )}
+                      </p>
+                    </Td>
+                  </Tr>
+                )}
+              </For>
+            </Tbody>
+          </Table>
+          <aside>
+            <h1>TOTAL</h1>
+            <p>{getValueWithMonetaryMask(getTotalValue(), 'pt-BR', 'BRL')}</p>
+            <a href="#" class="btn btn-black">
+              Ir para pagamento
+            </a>
+            <a href="/" class="btn btn-outline-black">
+              Escolher mais produtos
+            </a>
+          </aside>
+        </article>
 
-            <div class="content-body">
-              <div class="table" style="display: flex;">
-                <Table striped bordered hover>
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Nome</th>
-                      <th>Preço</th>
-                      <th>Quantidade</th>
-                      <th>Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+        <Form>
+          <FormField
+            id="coupon"
+            name="coupon"
+            type="text"
+            text="Cupom de desconto"
+            placeholder="Digite seu cupom"
+            value=""
+            required
+          />
+          <FormField
+            id="user_cep"
+            name="user_cep"
+            type="number"
+            text="CEP"
+            placeholder="00000000"
+            value=""
+            minLength="8"
+            maxLength="8"
+            required
+          />
 
-                    {ListProducts.map(product =>
-                      <tr>
-                        <td><img src={product.image} alt="Imagem Ração GranPlus Menu para Adultos de Porte Mini" style="height: 80px;" /></td>
-                        <td>{product.name}</td>
-                        <td>{getValueWithMonetaryMask(product.price, 'pt-BR', 'BRL')}</td>
-                        <td>{product.quantity}</td>
-                        <td>{getValueWithMonetaryMask(product.price * product.quantity, 'pt-BR', 'BRL')}</td>
-                      </tr>
-                    )}
-                  </tbody>
-                </Table>
-
-                <div class="total">
-                  <h1>TOTAL</h1>
-                  <span>{getValueWithMonetaryMask(getTotalValue(), 'pt-BR', 'BRL')}</span>
-
-                  <div>
-                    <a href="#"><button type="button" class="btn" style="background-color: black; color: white;">Ir para pagamento</button></a>
-                    <a href="/product-list"><button type="button" class="btn">Escolher mais produtos</button></a>
-                  </div>
-                </div>
-              </div>
-
-              <Form>
-                <Row class="mb-3">
-                  <Form.Group as={Col} md="5" controlId="name">
-                    <Form.Label>Cupom de desconto</Form.Label>
-                    <Form.Control type="text" placeholder="Digite seu cupom" required />
-                  </Form.Group>
-                  <Form.Group as={Col} md="5" controlId="name">
-                    <Form.Label>Consultar CEP</Form.Label>
-                    <Form.Control type="number" placeholder="Descreva o produto" required />
-                  </Form.Group>
-                  <Form.Group as={Col} md="1" style='display: flex; align-items: flex-end;'>
-                    <button class="btn" style="background-color: black; color: white; width: 110px; border-radius: 100px;" type="submit">
-                      Consultar
-                    </button>
-                  </Form.Group>
-                </Row>
-              </Form>
-            </div>
-          </div>
-        </div >
-
-        <Footer />
-      </main >
+          <Button className="btn btn-black" text="Consultar" />
+        </Form>
+      </main>
+      <Footer />
     </>
   )
 }
