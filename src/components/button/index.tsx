@@ -1,5 +1,4 @@
 import { type JSX } from 'solid-js'
-import './button.css'
 
 interface ButtonProps extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
