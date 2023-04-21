@@ -1,13 +1,30 @@
-input[type="number_format"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+#user-signup {
+  margin: 64px auto;
 }
 
-input[type="number_format"] {
-  -moz-appearance: textfield;
-  appearance: textfield;
+#user-signup h1 {
   text-align: center;
 }
 
-#user-signup footer {
-  position: relative;
+#user-signup form {
+  max-width: 864px;
+  margin: 0 auto;
+}
+
+#user-signup form .inline-field {
+  display: inline-flex;
+  width: 100%;
+}
+
+#user-signup form .inline-field .input-field:first-child {
+  margin-right: 8px;
+}
+
+#user-signup form > div {
+  margin-top: 24px;
+}
+
+#user-signup form button {
+  display: flex;
+  margin: 48px 0 0 auto;
 }
