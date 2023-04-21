@@ -69,7 +69,7 @@ export const NavBar = (): JSX.Element => {
             <LazyImage url={person_icon} alt="Logo da E-Pet" type="local" />
             <div>
               <li>
-                <a href="#">Cadastro</a>
+                <a href="/user-signup">Cadastro</a>
               </li>
               <li>
                 <a href="/login">Login</a>
