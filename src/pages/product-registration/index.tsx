@@ -205,7 +205,7 @@ export const ProductRegistration = (): JSX.Element => {
             />
           </div>
 
-          <Button text="Cadastrar" className="black" />
+          <Button text="Cadastrar" className="btn btn-black" />
         </Form>
       </main>
       <Footer />
