@@ -1,15 +1,20 @@
 import { type JSX } from 'solid-js'
 import { getURLImage } from '../../services/image-cdn'
 
-interface ImageInterface {
+export interface ImageInterface {
   url: string
   alt: string
+  type: string
 }
 
 export const Image = (props: ImageInterface): JSX.Element => {
-  const { url, alt } = props
+  const { url, alt, type } = props
 
-  return (
-    <img src={getURLImage(url)} alt={alt} />
-  )
+  if (type === 'remote') {
+    return (
+      <img src={getURLImage(url)} alt={alt} />
+    )
+  } else if (type === 'local') {
+    return <img src={url} alt={alt} />
+  }
 }
