@@ -120,7 +120,7 @@ header aside {
   align-items: start;
 }
 
-header aside #shopping-cart {
+header aside #shopping-cart-link {
   display: flex;
   align-items: center;
   min-width: 10rem;
