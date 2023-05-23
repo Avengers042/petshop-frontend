@@ -165,7 +165,7 @@ export const UserSignup = (): JSX.Element => {
             />
           </div>
 
-          <Button text="Cadastrar" className="btn btn-black" />
+          <Button type="submit" text="Cadastrar" className="btn btn-black" />
         </Form>
       </main>
       <Footer />

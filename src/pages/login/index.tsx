@@ -39,7 +39,7 @@ export const Login = (): JSX.Element => {
 
               <Button className="btn btn-black" type="submit" text="Entrar" />
               <p class="signup">
-                Não possui cadastro? <a href="#">Clique aqui</a>
+                Não possui cadastro? <a href="/user-signup">Clique aqui</a>
               </p>
             </Form>
           </section>
