@@ -27,6 +27,7 @@
   "dependencies": {
     "@cloudinary/url-gen": "^1.10.0",
     "@solidjs/router": "^0.7.1",
+    "axios": "^1.4.0",
     "nookies": "^2.5.2",
     "solid-icons": "^1.0.4",
     "solid-js": "^1.6.10",
