@@ -18,7 +18,7 @@ interface User {
 
 export async function findAllUsers (): Promise<ResponseUser> {
   const response = api.get('/users')
-    .then((res) => { return { statusCode: res.status, data: { ...res.data } } })
+    .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
 
   return await response

@@ -17,7 +17,7 @@ interface Address {
 
 export async function findAllAddresses (): Promise<ResponseAddress> {
   const response = api.get('/addresses')
-    .then((res) => { return { statusCode: res.status, data: { ...res.data } } })
+    .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
 
   return await response
