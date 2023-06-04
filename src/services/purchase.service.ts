@@ -2,7 +2,7 @@ import api from './api'
 
 interface ResponsePurchase {
   statusCode: string
-  data: object
+  data: Purchase
 }
 
 interface Purchase {
@@ -10,6 +10,13 @@ interface Purchase {
   productId?: number
   userId?: number
 }
+
+// Nova interface, esperando atualização no back
+// interface Purchase {
+//   purchaseId?: number
+//   userId?: number
+//   productsId?: number[]
+// }
 
 export async function findAllPurchases (): Promise<ResponsePurchase> {
   const response = api.get('/purchases')
