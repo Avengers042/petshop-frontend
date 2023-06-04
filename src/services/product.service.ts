@@ -2,7 +2,7 @@ import api from './api'
 
 interface ResponseProduct {
   statusCode: string
-  data: object
+  data: Product
 }
 
 interface Product {
@@ -11,6 +11,19 @@ interface Product {
   description?: string
   supplierId?: number
 }
+
+// Nova interface, esperando atualização no back
+// interface Product {
+//   productId?: number
+//   image?: string
+//   name?: string
+//   alt?: string
+//   description?: string
+//   price?: number
+//   brand?: string
+//   discount?: number
+//   supplierId?: number
+// }
 
 export async function findAllProducts (): Promise<ResponseProduct> {
   const response = api.get('/products')
