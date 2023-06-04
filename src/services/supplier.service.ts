@@ -2,7 +2,7 @@ import api from './api'
 
 interface ResponseSupplier {
   statusCode: string
-  data: object
+  data: Supplier
 }
 
 interface Supplier {
