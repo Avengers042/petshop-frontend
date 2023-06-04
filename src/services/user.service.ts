@@ -2,7 +2,7 @@ import api from './api'
 
 interface ResponseUser {
   statusCode: string
-  data: object
+  data: User
 }
 
 interface User {
@@ -15,6 +15,18 @@ interface User {
   password?: string
   addressId?: number
 }
+
+// Nova interface, esperando atualização no back
+// interface User {
+//   userId?: number
+//   firstName?: string
+//   lastName?: string
+//   email?: string
+//   password?: string
+//   birthDate?: Date
+//   cpf?: string
+//   addressId?: number
+// }
 
 export async function findAllUsers (): Promise<ResponseUser> {
   const response = api.get('/users')
