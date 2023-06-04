@@ -2,7 +2,7 @@ import api from './api'
 
 interface ResponseStock {
   statusCode: string
-  data: object
+  data: Stock
 }
 
 interface Stock {
