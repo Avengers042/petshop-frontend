@@ -34,8 +34,10 @@ export async function addStock (stock: Stock): Promise<ResponseStock> {
   return await response
 }
 
-export async function updateStock (id: number, stock: Stock): Promise<ResponseStock> {
+export async function updateStock (stock: Stock): Promise<ResponseStock> {
   let response
+
+  const id = stock.productId ?? 0
 
   if (stock.productId != null && stock.amount != null) {
     response = api.put(`/stocks/${id}`, stock)
