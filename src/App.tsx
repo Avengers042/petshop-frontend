@@ -7,6 +7,7 @@ import { ProductItem } from './pages/product-item'
 import { ProductRegistration } from './pages/product-registration'
 import { ShoppingCart } from './pages/shopping-cart'
 import { UserSignup } from './pages/user-signup'
+import { SignUpProvider } from './contexts/SignUpContext'
 
 const checkCookies = (): void => {
   if (navigator.cookieEnabled) {
@@ -19,14 +20,16 @@ const App: Component = () => {
 
   return (
     <>
-      <Routes>
-        <Route path="/login" component={Login} />
-        <Route path="/*" component={ProductList} />
-        <Route path="/product-item" component={ProductItem} />
-        <Route path="/product-registration" component={ProductRegistration} />
-        <Route path="/shopping-cart" component={ShoppingCart} />
-        <Route path="/user-signup" component={UserSignup} />
-      </Routes>
+      <SignUpProvider>
+        <Routes>
+          <Route path="/login" component={Login} />
+          <Route path="/*" component={ProductList} />
+          <Route path="/product-item" component={ProductItem} />
+          <Route path="/product-registration" component={ProductRegistration} />
+          <Route path="/shopping-cart" component={ShoppingCart} />
+          <Route path="/user-signup" component={UserSignup} />
+        </Routes>
+      </SignUpProvider>
     </>
   )
 }

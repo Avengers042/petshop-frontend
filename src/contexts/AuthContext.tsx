@@ -6,9 +6,14 @@ import { useNavigate } from 'solid-start/router'
 import { recoverUserInformation, signInRequest } from '../services/auth'
 
 export interface User {
-  name: string
-  email: string
-  avatar_url: string
+  userId?: number
+  firstName?: string
+  lastName?: string
+  cpf?: string
+  email?: string
+  birthday?: Date
+  password?: string
+  addressId?: number
 }
 
 interface SignInData {
@@ -25,12 +30,8 @@ export interface AuthContextType {
 export const AuthContext = createContext<AuthContextType>()
 
 export const AuthProvider = (props: any): JSX.Element => {
-  const [getUser, setUser] = createStore<User>({
-    email: 'error',
-    name: 'error',
-    avatar_url: ''
-  })
-  const isAutenticated = Boolean(getUser)
+  const [user, setUser] = createStore<User>()
+  const isAutenticated = Boolean(user)
 
   createEffect(() => {
     const { petshop_token: token } = parseCookies()
@@ -38,7 +39,7 @@ export const AuthProvider = (props: any): JSX.Element => {
     if (token.length > 0) {
       recoverUserInformation()
         .then((response) => {
-          setUser(response.user)
+          setUser(response)
         })
         .catch((error) => {
           console.log(error)
@@ -68,7 +69,7 @@ export const AuthProvider = (props: any): JSX.Element => {
   }
 
   return (
-    <AuthContext.Provider value={{ user: getUser, isAutenticated, signIn }}>
+    <AuthContext.Provider value={{ user, isAutenticated, signIn }}>
       {props.children}
     </AuthContext.Provider>
   )

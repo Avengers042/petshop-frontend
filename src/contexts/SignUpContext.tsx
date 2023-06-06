@@ -1,58 +1,55 @@
-import { parseCookies } from 'nookies'
-import { createContext, createEffect, type JSX } from 'solid-js'
+import { createContext, type JSX } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { useNavigate } from 'solid-start/router'
 
-import { recoverUserInformation, signInRequest } from '../services/auth'
+import { signUpRequest } from '../services/auth'
 
-interface User {
-  email: string
-  name: string
+export interface User {
+  userId?: number
+  firstName?: string
+  lastName?: string
+  cpf?: string
+  email?: string
+  birthday?: Date
+  password?: string
+  addressId?: number
 }
 
-interface SignUpData {
-  email: string
-  password: string
+export interface Address {
+  addressId?: number
+  number?: number
+  cep?: string
+  uf?: string
+  district?: string
+  publicPlace?: string
+  complement?: string
 }
 
-export const SignUpContext = createContext()
+export interface SignUpContextType {
+  user: User
+  signUp: (user: User, address: Address) => Promise<void>
+}
+
+export const SignUpContext = createContext<SignUpContextType>()
 
 export const SignUpProvider = (props: any): JSX.Element => {
-  const [getUser, setUser] = createStore<User>({
-    email: 'error',
-    name: 'error'
-  })
-  const registered = Boolean(getUser)
-
-  createEffect(() => {
-    const { petshop_token: token } = parseCookies()
-
-    if (token.length > 0) {
-      recoverUserInformation()
-        .then((response) => {
-          setUser(response.user)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-  }, [])
+  const [user] = createStore<User>()
 
   const navigate = useNavigate()
 
-  async function signUp ({ email, password }: SignUpData): Promise<void> {
-    const { token, user } = await signInRequest({ email, password })
+  async function signUp (user: User, address: Address): Promise<void> {
+    try {
+      await signUpRequest(user, address)
 
-    if (registered) {
       console.log('Cadastrado com sucesso')
       navigate('/login', { replace: true })
-    } else {
-      console.log('Não Cadastrado, ocorreu algum erro')
+    } catch (e) {
+      console.log('Não cadastrado, ocorreu algum erro: ', e)
     }
   }
 
   return (
-    <SignUpContext.Provider value={{ user: getUser, registered, signUp }}>
+    <SignUpContext.Provider value={{ user, signUp }}>
       {props.children}
     </SignUpContext.Provider>
   )

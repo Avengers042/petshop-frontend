@@ -1,48 +1,39 @@
 import { v4 as uuid } from 'uuid'
-import { type User } from '../contexts/AuthContext'
+import { type Address, type User } from '../contexts/SignUpContext'
+import { addUser } from '../services/user.service'
+import { addAddress } from '../services/address.service'
 
-interface SignInRequestData {
-  email: string
-  password: string
-}
-
-interface TokenUser {
+interface ReturnSignIn {
   token: string
   user: User
 }
 
-const delay = async (amount = 750): Promise<void> => {
-  void new Promise((resolve) => setTimeout(resolve, amount))
+interface ReturnSignUp {
+  data: User
+  statusCode: string
 }
 
-interface ReturnUser {
-  user: User
+export const signInRequest = async ({ email, password }: User): Promise<ReturnSignIn> => {
+  const user: User = { email, password }
+
+  return { token: uuid.toString(), user }
 }
 
-export const signInRequest = async (data: SignInRequestData): Promise<TokenUser> => {
-  await delay()
+export const signUpRequest = async (user: User, address: Address): Promise<ReturnSignUp> => {
+  const userToAdd: User = user
 
-  const { email } = data
+  const { data } = await addAddress(address)
+  
+  userToAdd.addressId = data.addressId
 
-  return {
-    token: uuid.toString(),
-    user: {
-      email,
-      name: 'Teste',
-      avatar_url: 'https://www.github.com/wesleyclaudino.png'
-    }
-  }
+  return await addUser(userToAdd)
 }
 
-export const recoverUserInformation = async (): Promise<ReturnUser> => {
-  await delay()
+export const recoverUserInformation = async (): Promise<User> => {
   const user: User = {
-    name: 'Fulano de Tal',
-    email: 'fulano@gmail.com',
-    avatar_url: 'https://www.github.com/wesleyclaudino.png'
+    firstName: 'Fulano de Tal',
+    email: 'fulano@gmail.com'
   }
 
-  return {
-    user: { ...user }
-  }
+  return user
 }
