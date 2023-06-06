@@ -10,6 +10,8 @@ interface Product {
   name?: string
   description?: string
   supplierId?: number
+  imageId?: number
+  categoryId?: number
 }
 
 // Nova interface, esperando atualização no back
@@ -49,10 +51,12 @@ export async function addProduct (product: Product): Promise<ResponseProduct> {
   return await response
 }
 
-export async function updateProduct (id: number, product: Product): Promise<ResponseProduct> {
+export async function updateProduct (product: Product): Promise<ResponseProduct> {
   let response
 
-  if (product.productId != null && product.name != null && product.description != null && product.supplierId != null) {
+  const id = product.productId ?? 0
+
+  if (product.productId != null && product.name != null && product.description != null && product.supplierId != null && product.imageId != null && product.categoryId != null) {
     response = api.put(`/products/${id}`, product)
       .then((res) => { return { status: res.status, data: res.data } })
       .catch((err) => { return err })
