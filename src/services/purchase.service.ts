@@ -42,8 +42,10 @@ export async function addPurchase (purchase: Purchase): Promise<ResponsePurchase
   return await response
 }
 
-export async function updatePurchase (id: number, purchase: Purchase): Promise<ResponsePurchase> {
+export async function updatePurchase (purchase: Purchase): Promise<ResponsePurchase> {
   let response
+
+  const id = purchase.purchaseId ?? 0
 
   if (purchase.purchaseId != null && purchase.productId != null && purchase.userId != null) {
     response = api.put(`/purchases/${id}`, purchase)
