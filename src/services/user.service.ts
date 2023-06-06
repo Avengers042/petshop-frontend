@@ -11,22 +11,10 @@ interface User {
   lastName?: string
   cpf?: string
   email?: string
-  age?: number
+  birthday?: Date
   password?: string
   addressId?: number
 }
-
-// Nova interface, esperando atualização no back
-// interface User {
-//   userId?: number
-//   firstName?: string
-//   lastName?: string
-//   email?: string
-//   password?: string
-//   birthDate?: Date
-//   cpf?: string
-//   addressId?: number
-// }
 
 export async function findAllUsers (): Promise<ResponseUser> {
   const response = api.get('/users')
@@ -52,8 +40,10 @@ export async function addUser (user: User): Promise<ResponseUser> {
   return await response
 }
 
-export async function updateUser (id: number, user: User): Promise<ResponseUser> {
+export async function updateUser (user: User): Promise<ResponseUser> {
   let response
+
+  const id = user.userId ?? 0
 
   if (user.firstName != null && user.lastName != null && user.cpf != null && user.email != null && user.age != null && user.password != null && user.addressId != null) {
     response = api.put(`/users/${id}`, user)
