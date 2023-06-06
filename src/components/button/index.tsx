@@ -6,9 +6,9 @@ interface ButtonProps extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = (props: ButtonProps): JSX.Element => {
-  const { text, type, className } = props
+  const { text, type, className, onClick } = props
 
   return (
-    <button type={type} class={className}>{text}</button>
+    <button type={type} class={className} onClick={onClick}>{text}</button>
   )
 }

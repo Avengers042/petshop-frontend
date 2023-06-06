@@ -17,7 +17,8 @@ export const FormField = (props: FormFieldProps): JSX.Element => {
     placeholder,
     minLength,
     maxLength,
-    value
+    value,
+    onChange
   } = props
 
   if (props.className != null) { className = className.concat(props.className) }
@@ -35,6 +36,7 @@ export const FormField = (props: FormFieldProps): JSX.Element => {
         maxLength={maxLength}
         required={required}
         value={value}
+        onChange={onChange}
       />
     </div>
   )

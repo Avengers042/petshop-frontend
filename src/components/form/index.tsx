@@ -3,7 +3,7 @@ import './form.css'
 
 export const Form = (props: any): JSX.Element => {
   return (
-    <form method="post">
+    <form>
       {props.children}
     </form>
   )
