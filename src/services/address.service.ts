@@ -2,7 +2,7 @@ import api from './api'
 
 interface ResponseAddress {
   statusCode: string
-  data: object
+  data: Address
 }
 
 interface Address {
