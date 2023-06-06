@@ -39,8 +39,10 @@ export async function addSupplier (supplier: Supplier): Promise<ResponseSupplier
   return await response
 }
 
-export async function updateSupplier (id: number, supplier: Supplier): Promise<ResponseSupplier> {
+export async function updateSupplier (supplier: Supplier): Promise<ResponseSupplier> {
   let response
+
+  const id = supplier.supplierId ?? 0
 
   if (supplier.supplierId != null && supplier.corporateName != null && supplier.tradeName != null && supplier.cnpj != null && supplier.email != null && supplier.commercialPhone != null && supplier.addressId != null) {
     response = api.put(`/suppliers/${id}`, supplier)
