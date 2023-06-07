@@ -1,17 +1,26 @@
-import { For, type JSX, Suspense, createMemo } from 'solid-js'
-import { NavBar } from '../../components/navbar'
-import { Footer } from '../../components/footer'
-import { Button } from '../../components/button'
-import ListProducts from './products.json'
-import ListServices from './services.json'
+import { For, Suspense, createSignal, onMount, type JSX } from 'solid-js'
+
 import { CardGroup } from '../../components/card-group'
 import { Card } from '../../components/card-group/card'
+import { Footer } from '../../components/footer'
 import { LazyImage } from '../../components/lazy-image'
+import { NavBar } from '../../components/navbar'
+
+import { findAllCategories } from '../../services/category.service'
+import { findAllProducts } from '../../services/product.service'
+
 import './product-list.css'
 
 export const ProductList = (): JSX.Element => {
-  const services = createMemo(() => ListServices, [])
-  const products = createMemo(() => ListProducts, [])
+  const [categories, setCategories]: any = createSignal()
+  const [products, setProducts]: any = createSignal()
+  // const [images, setImages]: any = createSignal()
+
+  onMount(() => {
+    void findAllCategories().then(res => setCategories(res.data))
+    void findAllProducts().then(res => setProducts(res.data))
+    // void findAllImages().then(res => setImages(res.data))
+  })
 
   return (
     <>
@@ -28,84 +37,42 @@ export const ProductList = (): JSX.Element => {
             </Suspense>
           </div>
 
-          <div class="list">
-            <h1>Nossos serviços</h1>
+          <For each={categories()}>
+            {(category) => (
+              <div class="list">
+                <h1 id="cats">{category.name}</h1>
 
-            <CardGroup>
-              <For each={services()}>
-                {(service) => (
-                  <Card className="service">
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <LazyImage
-                        url={service.image}
-                        alt={service.alt}
-                        type="remote"
-                      />
-                    </Suspense>
-                    <h2 class="card-title">{service.name}</h2>
-                    <h3 class="card-text">{service.description}</h3>
-                    <Button className="btn btn-black" type="submit" text="Contratar" />
-                  </Card>
-                )}
-              </For>
-            </CardGroup>
-          </div>
-
-          <div class="list">
-            <h1 id="cats">Gatos</h1>
-
-            <CardGroup>
-              <For each={products()}>
-                {(product) => (
-                  <Card className="product">
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <LazyImage
-                        url={product.image}
-                        alt={product.alt}
-                        type="remote"
-                      />
-                    </Suspense>
-                    <h2 class="card-title">
-                      <a href="/product-item">{product.name}</a>
-                    </h2>
-                    <h3 class="card-subtitle">{product.brand}</h3>
-                    <div class="card-text">
-                      <p>R$ {product.price}</p>
-                      <p class="card-label">{product.discount}% OFF</p>
-                    </div>
-                  </Card>
-                )}
-              </For>
-            </CardGroup>
-          </div>
-
-          <div class="list">
-            <h1 id="dogs">Cachorros</h1>
-
-            <CardGroup>
-              <For each={ListProducts}>
-                {(product) => (
-                  <Card className="product">
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <LazyImage
-                        url={product.image}
-                        alt={product.alt}
-                        type="remote"
-                      />
-                    </Suspense>
-                    <h2 class="card-title">
-                      <a href="/product-item">{product.name}</a>
-                    </h2>
-                    <h3 class="card-subtitle">{product.brand}</h3>
-                    <div class="card-text">
-                      <p>R$ {product.price}</p>
-                      <p class="card-label">{product.discount}% OFF</p>
-                    </div>
-                  </Card>
-                )}
-              </For>
-            </CardGroup>
-          </div>
+                <CardGroup>
+                  <For each={products()}>
+                    {(product) => {
+                      if (category.categoryId === product.categoryId) {
+                        return (
+                          <Card className="product">
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <LazyImage
+                                url="granplus-dog_tzvqbg"
+                                alt="Ração para cachorro adulto"
+                                type="remote"
+                              />
+                            </Suspense>
+                            <h2 class="card-title">
+                              <a href="/product-item">{product.name}</a>
+                            </h2>
+                            <h3 class="card-subtitle">{product.description}</h3>
+                            {/* <div class="card-text">
+                              <p>R$ {product.price}</p>
+                              <p class="card-label">{product.discount}% OFF</p>
+                            </div> */}
+                          </Card>
+                        )
+                      }
+                    }
+                    }
+                  </For>
+                </CardGroup>
+              </div>
+            )}
+          </For>
         </div>
       </main>
       <Footer />
