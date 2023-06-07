@@ -1,15 +1,75 @@
 import { type JSX } from 'solid-js'
-import { NavBar } from '../../components/navbar'
+
+import { Button } from '../../components/button'
 import { Footer } from '../../components/footer'
 import { Form } from '../../components/form'
 import { FormField } from '../../components/form/form-field'
-import { Button } from '../../components/button'
-import { Textarea } from '../../components/form/textarea'
-import { Selection } from '../../components/form/selection'
 import { Option } from '../../components/form/option'
+import { Selection } from '../../components/form/selection'
+import { Textarea } from '../../components/form/textarea'
+import { NavBar } from '../../components/navbar'
+
+import { addAddress } from '../../services/address.service'
+import { addProduct } from '../../services/product.service'
+import { addSupplier } from '../../services/supplier.service'
+
 import './product-registration.css'
 
+interface Product {
+  productId?: number
+  name?: string
+  description?: string
+  supplierId?: number
+  imageId?: number
+  categoryId?: number
+}
+
+interface Category {
+  categoryId?: number
+  name?: string
+}
+
+interface Supplier {
+  supplierId?: number
+  corporateName?: string
+  tradeName?: string
+  cnpj?: string
+  email?: string
+  commercialPhone?: number
+  addressId?: number
+}
+
+interface Address {
+  addressId?: number
+  number?: number
+  cep?: string
+  uf?: string
+  district?: string
+  publicPlace?: string
+  complement?: string
+}
+
 export const ProductRegistration = (): JSX.Element => {
+  const product: Product = {}
+  const supplier: Supplier = {}
+  const address: Address = {}
+
+  // TODO: Montar as categorias
+  // const [categories, setCategories] = createSignal<Category[]>([])
+  // onMount(() => {
+  //   void findAllCategories().then(res => setCategories(res.data))
+  // })
+
+  product.categoryId = 0
+
+  const categories: Category[] = [
+    { categoryId: 0, name: 'Cachorros' },
+    { categoryId: 1, name: 'Gatos' },
+    { categoryId: 2, name: 'Outros' }
+  ]
+
+  address.uf = 'AC'
+
   const ufs = [
     { name: 'Acre (AC)', acronym: 'AC' },
     { name: 'Alagoas (AL)', acronym: 'AL' },
@@ -40,6 +100,84 @@ export const ProductRegistration = (): JSX.Element => {
     { name: 'Tocantins (TO)', acronym: 'TO' }
   ]
 
+  const handleProductName = (event: any): void => {
+    product.name = event.target.value
+  }
+
+  // const handleProductAmount = (event: any): void => {
+  //   product.amount = event.target.value
+  //   console.log('product.amount: ', product.amount)
+  // }
+
+  const handleProductDescription = (event: any): void => {
+    product.description = event.target.value
+  }
+
+  // const handleProductPrice = (event: any): void => {
+  //   product.price = event.target.value
+  //   console.log('product.price: ', product.price)
+  // }
+
+  const handleProductCategory = (event: any): void => {
+    product.categoryId = event.target.value
+  }
+
+  const handleSupplierCnpj = (event: any): void => {
+    supplier.cnpj = event.target.value
+  }
+
+  const handleSupplierCommercialPhone = (event: any): void => {
+    supplier.commercialPhone = event.target.value
+  }
+
+  const handleSupplierCorporateName = (event: any): void => {
+    supplier.corporateName = event.target.value
+  }
+
+  const handleSupplierTradeName = (event: any): void => {
+    supplier.tradeName = event.target.value
+  }
+
+  const handleSupplierEmail = (event: any): void => {
+    supplier.email = event.target.value
+  }
+
+  const handleCep = (event: any): void => {
+    address.cep = event.target.value
+  }
+
+  const handleUf = (event: any): void => {
+    address.uf = event.target.value
+  }
+
+  const handlePublicPlace = (event: any): void => {
+    address.publicPlace = event.target.value
+  }
+
+  const handleDistrict = (event: any): void => {
+    address.district = event.target.value
+  }
+
+  const handleNumber = (event: any): void => {
+    address.number = event.target.value
+  }
+
+  const handleComplement = (event: any): void => {
+    address.complement = event.target.value
+  }
+
+  async function registerProduct (): Promise<void> {
+    const { data: addressData } = await addAddress(address)
+
+    supplier.addressId = addressData.addressId
+    const { data: supplierData } = await addSupplier(supplier)
+
+    product.supplierId = supplierData.supplierId
+    product.imageId = 1
+
+    await addProduct(product)
+  }
+
   return (
     <>
       <NavBar />
@@ -47,7 +185,7 @@ export const ProductRegistration = (): JSX.Element => {
       <main id="product-registration" class="content container">
         <h1>Cadastre seu produto</h1>
         <p>
-          Olá! Para cadastrar o produto do sistema, é necessário que preencha os
+          Olá! Para cadastrar o produto no sistema, é necessário que preencha os
           campos do formulário abaixo e será atualizado na plataforma o mais
           rápido possível
         </p>
@@ -63,6 +201,7 @@ export const ProductRegistration = (): JSX.Element => {
                 text="Nome do produto"
                 placeholder="Digite o nome do produto"
                 value=""
+                onChange={handleProductName}
                 required
               />
 
@@ -72,6 +211,7 @@ export const ProductRegistration = (): JSX.Element => {
                 type="number"
                 text="Quantidade"
                 value="1"
+                // onChange={handleProductAmount}
                 className="number"
                 required
               />
@@ -83,32 +223,53 @@ export const ProductRegistration = (): JSX.Element => {
               text="Descrição do produto"
               placeholder="Digite a descrição do produto"
               value=""
+              onChange={handleProductDescription}
               required
             />
 
-            <FormField
-              id="product_price"
-              name="product_price"
-              type="number"
-              text="Preço do produto"
-              step="0.01"
-              value="0"
-              required
-            />
+            <div class="inline-field">
+              <FormField
+                id="product_price"
+                name="product_price"
+                type="number"
+                text="Preço do produto"
+                step="0.01"
+                value="0"
+                // onChange={handleProductPrice}
+                required
+              />
+              <Selection name="category" id="category" text="Categoria" onChange={handleProductCategory} >
+                {categories.map((category: any) => <Option value={category.categoryId} text={category.name} />)}
+              </Selection>
+            </div>
           </div>
 
           <div>
             <h3>Fornecedor</h3>
 
-            <FormField
-              id="corporate_cnpj"
-              name="corporate_cnpj"
-              type="text"
-              text="CNPJ"
-              placeholder="CNPJ do fornecedor"
-              value=""
-              required
-            />
+            <div class="inline-field">
+              <FormField
+                id="corporate_cnpj"
+                name="corporate_cnpj"
+                type="text"
+                text="CNPJ"
+                placeholder="CNPJ do fornecedor"
+                value=""
+                onChange={handleSupplierCnpj}
+                required
+              />
+
+              <FormField
+                id="commercial_phone"
+                name="commercial_phone"
+                type="text"
+                text="Telefone"
+                placeholder="Telefone do fornecedor"
+                value=""
+                onChange={handleSupplierCommercialPhone}
+                required
+              />
+            </div>
 
             <div class="inline-field">
               <FormField
@@ -118,6 +279,7 @@ export const ProductRegistration = (): JSX.Element => {
                 text="Razão social"
                 placeholder="Ex.: Ecommerce Petshop LTDA."
                 value=""
+                onChange={handleSupplierCorporateName}
                 required
               />
               <FormField
@@ -127,6 +289,7 @@ export const ProductRegistration = (): JSX.Element => {
                 text="Nome fantasia"
                 placeholder="Ex.: E-Pet"
                 value=""
+                onChange={handleSupplierTradeName}
                 required
               />
             </div>
@@ -138,6 +301,7 @@ export const ProductRegistration = (): JSX.Element => {
               text="Email do fornecedor"
               placeholder="Digite a descrição do produto"
               value=""
+              onChange={handleSupplierEmail}
               required
             />
           </div>
@@ -152,11 +316,12 @@ export const ProductRegistration = (): JSX.Element => {
                 text="CEP"
                 placeholder="00000000"
                 value=""
+                onChange={handleCep}
                 minLength="8"
                 maxLength="8"
                 required
               />
-              <Selection name="uf" id="uf" text="UF">
+              <Selection name="uf" id="uf" text="UF" onChange={handleUf} >
                 {ufs.map(uf => <Option value={uf.acronym} text={uf.name} />)}
               </Selection>
             </div>
@@ -168,6 +333,7 @@ export const ProductRegistration = (): JSX.Element => {
               text="Logradouro"
               placeholder="Ex.: Quadra 1, Lote J, Entre Quadras (AQ), Área Especial (AE) etc"
               value=""
+              onChange={handlePublicPlace}
               required
             />
 
@@ -179,6 +345,7 @@ export const ProductRegistration = (): JSX.Element => {
                 text="Bairro"
                 placeholder="Ex.: Setor Central (Gama)"
                 value=""
+                onChange={handleDistrict}
                 required
               />
 
@@ -189,6 +356,7 @@ export const ProductRegistration = (): JSX.Element => {
                 text="Número"
                 placeholder="Ex.: 1"
                 value=""
+                onChange={handleNumber}
                 className="number"
                 required
               />
@@ -201,11 +369,12 @@ export const ProductRegistration = (): JSX.Element => {
               text="Complemento"
               placeholder="Ex.: Apartamento, Condomínio, etc"
               value=""
+              onChange={handleComplement}
               required
             />
           </div>
 
-          <Button text="Cadastrar" className="btn btn-black" />
+          <Button type="button" text="Cadastrar" className="btn btn-black" onClick={registerProduct} />
         </Form>
       </main>
       <Footer />
