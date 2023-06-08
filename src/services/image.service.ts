@@ -5,13 +5,18 @@ interface ResponseImage {
   data: Image
 }
 
+interface ResponseImageList {
+  statusCode: string
+  data: Image[]
+}
+
 interface Image {
   imageId?: number
   imageName?: string
   imageAlt?: string
 }
 
-export async function findAllImages (): Promise<ResponseImage> {
+export async function findAllImages (): Promise<ResponseImageList> {
   const response = api.get('/images')
     .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
