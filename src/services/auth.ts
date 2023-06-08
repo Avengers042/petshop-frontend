@@ -1,11 +1,10 @@
-import { v4 as uuid } from 'uuid'
 import { type Address, type User } from '../contexts/SignUpContext'
-import { addUser } from '../services/user.service'
+import { addUser, loginUser } from '../services/user.service'
 import { addAddress } from '../services/address.service'
 import { addShoppingCart } from '../services/shopping-cart.service'
 
 interface ReturnSignIn {
-  token: string
+  token: Token
   user: User
 }
 
@@ -14,10 +13,17 @@ interface ReturnSignUp {
   statusCode: string
 }
 
+interface Token {
+  access_token: string
+  token_type: string
+}
+
 export const signInRequest = async ({ email, password }: User): Promise<ReturnSignIn> => {
   const user: User = { email, password }
 
-  return { token: uuid.toString(), user }
+  const token: any = loginUser(user)
+
+  return { token, user }
 }
 
 export const signUpRequest = async (user: User, address: Address): Promise<ReturnSignUp> => {
