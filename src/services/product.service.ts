@@ -9,23 +9,11 @@ interface Product {
   productId?: number
   name?: string
   description?: string
+  price?: number
   supplierId?: number
   imageId?: number
   categoryId?: number
 }
-
-// Nova interface, esperando atualização no back
-// interface Product {
-//   productId?: number
-//   image?: string
-//   name?: string
-//   alt?: string
-//   description?: string
-//   price?: number
-//   brand?: string
-//   discount?: number
-//   supplierId?: number
-// }
 
 export async function findAllProducts (): Promise<ResponseProduct> {
   const response = api.get('/products')
@@ -56,7 +44,7 @@ export async function updateProduct (product: Product): Promise<ResponseProduct>
 
   const id = product.productId ?? 0
 
-  if (product.productId != null && product.name != null && product.description != null && product.supplierId != null && product.imageId != null && product.categoryId != null) {
+  if (product.productId != null && product.name != null && product.description != null && product.price != null && product.supplierId != null && product.imageId != null && product.categoryId != null) {
     response = api.put(`/products/${id}`, product)
       .then((res) => { return { status: res.status, data: res.data } })
       .catch((err) => { return err })
