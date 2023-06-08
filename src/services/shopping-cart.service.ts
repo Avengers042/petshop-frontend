@@ -17,7 +17,7 @@ interface ShoppingCart {
 }
 
 export async function findAllShoppingCart (): Promise<ResponseShoppingCartList> {
-  const response = api.get('/shoppingCart')
+  const response = api.get('/carts')
     .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
 
@@ -25,7 +25,7 @@ export async function findAllShoppingCart (): Promise<ResponseShoppingCartList> 
 }
 
 export async function findShoppingCart (id: number): Promise<ResponseShoppingCart> {
-  const response = api.get(`/shoppingCart/${id}`)
+  const response = api.get(`/carts/${id}`)
     .then((res) => { return { status: res.status, data: res.data } })
     .catch((err) => { return err })
 
@@ -33,7 +33,7 @@ export async function findShoppingCart (id: number): Promise<ResponseShoppingCar
 }
 
 export async function addShoppingCart (shoppingCart: ShoppingCart): Promise<ResponseShoppingCart> {
-  const response = api.post('/shoppingCart', shoppingCart)
+  const response = api.post('/carts', shoppingCart)
     .then((res) => { return { status: res.status, data: res.data } })
     .catch((err) => { return err })
 
@@ -46,11 +46,11 @@ export async function updateShoppingCart (shoppingCart: ShoppingCart): Promise<R
   const id = shoppingCart.shoppingCartId ?? 0
 
   if (shoppingCart.shoppingCartId != null && shoppingCart.productId != null && shoppingCart.amount != null) {
-    response = api.put(`/shoppingCart/${id}`, shoppingCart)
+    response = api.put(`/carts/${id}`, shoppingCart)
       .then((res) => { return { status: res.status, data: res.data } })
       .catch((err) => { return err })
   } else {
-    response = api.patch(`/shoppingCart/${id}`, shoppingCart)
+    response = api.patch(`/carts/${id}`, shoppingCart)
       .then((res) => { return { status: res.status, data: res.data } })
       .catch((err) => { return err })
   }
@@ -59,7 +59,7 @@ export async function updateShoppingCart (shoppingCart: ShoppingCart): Promise<R
 }
 
 export async function deleteShoppingCart (id: number): Promise<ResponseShoppingCart> {
-  const response = api.delete(`/shoppingCart/${id}`)
+  const response = api.delete(`/carts/${id}`)
     .then((res) => { return { status: res.status, data: res.data } })
     .catch((err) => { return err })
 
