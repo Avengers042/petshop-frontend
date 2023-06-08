@@ -5,6 +5,11 @@ interface ResponseUser {
   data: User
 }
 
+interface ResponseUserList {
+  statusCode: string
+  data: User[]
+}
+
 interface User {
   userId?: number
   firstName?: string
@@ -17,7 +22,7 @@ interface User {
   shoppingCartId?: number
 }
 
-export async function findAllUsers (): Promise<ResponseUser> {
+export async function findAllUsers (): Promise<ResponseUserList> {
   const response = api.get('/users')
     .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
