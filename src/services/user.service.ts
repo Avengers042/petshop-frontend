@@ -14,6 +14,7 @@ interface User {
   birthday?: Date
   password?: string
   addressId?: number
+  shoppingCartId?: number
 }
 
 export async function findAllUsers (): Promise<ResponseUser> {
@@ -45,7 +46,7 @@ export async function updateUser (user: User): Promise<ResponseUser> {
 
   const id = user.userId ?? 0
 
-  if (user.firstName != null && user.lastName != null && user.cpf != null && user.email != null && user.age != null && user.password != null && user.addressId != null) {
+  if (user.firstName != null && user.lastName != null && user.cpf != null && user.email != null && user.birthday != null && user.password != null && user.addressId != null && user.shoppingCartId != null) {
     response = api.put(`/users/${id}`, user)
       .then((res) => { return { status: res.status, data: res.data } })
       .catch((err) => { return err })
