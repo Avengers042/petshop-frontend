@@ -5,6 +5,11 @@ interface ResponseSupplier {
   data: Supplier
 }
 
+interface ResponseSupplierList {
+  statusCode: string
+  data: Supplier[]
+}
+
 interface Supplier {
   supplierId?: number
   corporateName?: string
@@ -15,7 +20,7 @@ interface Supplier {
   addressId?: number
 }
 
-export async function findAllSuppliers (): Promise<ResponseSupplier> {
+export async function findAllSuppliers (): Promise<ResponseSupplierList> {
   const response = api.get('/suppliers')
     .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
