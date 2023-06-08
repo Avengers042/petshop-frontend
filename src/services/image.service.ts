@@ -7,8 +7,8 @@ interface ResponseImage {
 
 interface Image {
   imageId?: number
-  name?: string
-  alt?: string
+  imageName?: string
+  imageAlt?: string
 }
 
 export async function findAllImages (): Promise<ResponseImage> {
