@@ -21,7 +21,7 @@ interface Token {
 export const signInRequest = async ({ email, password }: User): Promise<ReturnSignIn> => {
   const user: User = { email, password }
 
-  const token = await loginUser(user)
+  const token = await loginUser(user) as Token
 
   return { token, user }
 }
