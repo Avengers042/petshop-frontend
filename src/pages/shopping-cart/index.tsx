@@ -1,33 +1,69 @@
-import { createMemo, For, Suspense, type JSX, createSignal } from 'solid-js'
+import { For, Suspense, createSignal, onMount, type JSX } from 'solid-js'
+
 import { Footer } from '../../components/footer'
-import { NavBar } from '../../components/navbar'
-import ListProducts from './products-cart.json'
 import { LazyImage } from '../../components/lazy-image'
+import { NavBar } from '../../components/navbar'
 import { Table } from '../../components/table'
+import { Tbody } from '../../components/table/tbody'
 import { Thead } from '../../components/table/thead'
 import { Tr } from '../../components/table/tr'
 import { Td } from '../../components/table/tr/td'
 import { Th } from '../../components/table/tr/th'
-import { Tbody } from '../../components/table/tbody'
-import { Form } from '../../components/form'
-import { FormField } from '../../components/form/form-field'
-import { Button } from '../../components/button'
+
+import { findAllProducts } from '../../services/product.service'
+import { findAllPurchases } from '../../services/purchase.service'
 
 import './shopping-cart.css'
 
+interface Product {
+  productId?: number
+  name?: string
+  description?: string
+  price?: number
+  amount?: number
+  supplierId?: number
+  imageId?: number
+  categoryId?: number
+}
+
+interface Purchase {
+  purchaseId?: number
+  amount?: number
+  shoppingCartId?: number
+  userId?: number
+  productId?: number
+}
+
 export const ShoppingCart = (): JSX.Element => {
   const [getTotalValue, setTotalValue] = createSignal(0)
-  const products = createMemo(() => ListProducts, [])
+  const [products, setProducts] = createSignal<Product[]>([])
+  const [purchases, setPurchases] = createSignal<Purchase[]>([])
+
+  onMount(() => {
+    void findAllPurchases().then(res => {
+      setPurchases(res.data.filter(purchase => purchase.userId === 26))
+
+      purchases().forEach(purchase => {
+        void findAllProducts().then(res => {
+          setProducts(res.data.filter(product => product.productId === purchase.productId))
+
+          products().forEach(product => {
+            product.amount = purchase.amount ?? 0
+
+            Boolean(product.price) && Boolean(product.amount)
+              ? setTotalValue(getTotalValue() + (product.price ?? 0) * (product.amount ?? 0))
+              : setTotalValue(0)
+          })
+        })
+      })
+    })
+  })
 
   const getValueWithMonetaryMask = (
     value: number,
     locale: string,
     currency: string
   ): string => value.toLocaleString(locale, { style: 'currency', currency })
-
-  products().forEach((product) => {
-    setTotalValue(getTotalValue() + product.price * product.quantity)
-  })
 
   return (
     <>
@@ -53,8 +89,8 @@ export const ShoppingCart = (): JSX.Element => {
                     <Td>
                       <Suspense fallback={<div>Loading...</div>}>
                         <LazyImage
-                          url={product.image}
-                          alt={product.alt}
+                          url="granplus-dog_tzvqbg"
+                          alt="Ração para cachorro adulto"
                           type="remote"
                         />
                       </Suspense>
@@ -65,19 +101,19 @@ export const ShoppingCart = (): JSX.Element => {
                     <Td>
                       <p>
                         {getValueWithMonetaryMask(
-                          product.price,
+                          product.price ?? 0,
                           'pt-BR',
                           'BRL'
                         )}
                       </p>
                     </Td>
                     <Td>
-                      <p>{product.quantity}</p>
+                      <p>{product.amount ?? 0}</p>
                     </Td>
                     <Td>
                       <p>
                         {getValueWithMonetaryMask(
-                          product.price * product.quantity,
+                          getTotalValue(),
                           'pt-BR',
                           'BRL'
                         )}
@@ -92,38 +128,13 @@ export const ShoppingCart = (): JSX.Element => {
             <h1>TOTAL</h1>
             <p>{getValueWithMonetaryMask(getTotalValue(), 'pt-BR', 'BRL')}</p>
             <a href="#" class="btn btn-black">
-              Ir para pagamento
+              Comprar
             </a>
             <a href="/" class="btn btn-outline-black">
               Escolher mais produtos
             </a>
           </aside>
         </article>
-
-        <Form>
-          <FormField
-            id="coupon"
-            name="coupon"
-            type="text"
-            text="Cupom de desconto"
-            placeholder="Digite seu cupom"
-            value=""
-            required
-          />
-          <FormField
-            id="user_cep"
-            name="user_cep"
-            type="number"
-            text="CEP"
-            placeholder="00000000"
-            value=""
-            minLength="8"
-            maxLength="8"
-            required
-          />
-
-          <Button className="btn btn-black" text="Consultar" />
-        </Form>
       </main>
       <Footer />
     </>

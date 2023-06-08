@@ -9,6 +9,7 @@
 
 #shopping-cart article {
   display: inline-flex;
+  width: 100%;
 }
 
 #shopping-cart article aside {
@@ -36,7 +37,7 @@
 
 #shopping-cart table tr {
   display: grid;
-  grid-template-columns: 80px auto repeat(3, 96px);
+  grid-template-columns: 80px auto repeat(3, 120px);
 }
 
 #shopping-cart table thead tr {
@@ -68,7 +69,7 @@
   padding: 8px;
 }
 
-#shopping-cart table tbody td:nth-child(n + 3) {
+#shopping-cart table tbody td {
   text-align: center;
 }
 
