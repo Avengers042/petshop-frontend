@@ -5,12 +5,17 @@ interface ResponseStock {
   data: Stock
 }
 
+interface ResponseStockList {
+  statusCode: string
+  data: Stock[]
+}
+
 interface Stock {
   productId?: number
   amount?: number
 }
 
-export async function findAllStocks (): Promise<ResponseStock> {
+export async function findAllStocks (): Promise<ResponseStockList> {
   const response = api.get('/stocks')
     .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
