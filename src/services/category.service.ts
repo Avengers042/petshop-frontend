@@ -5,12 +5,17 @@ interface ResponseCategory {
   data: Category
 }
 
+interface ResponseCategoryList {
+  statusCode: string
+  data: Category[]
+}
+
 interface Category {
   categoryId?: number
   name?: string
 }
 
-export async function findAllCategories (): Promise<ResponseCategory> {
+export async function findAllCategories (): Promise<ResponseCategoryList> {
   const response = api.get('/categories')
     .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
