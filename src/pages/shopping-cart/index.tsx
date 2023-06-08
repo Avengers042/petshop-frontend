@@ -58,7 +58,7 @@ export const ShoppingCart = (): JSX.Element => {
       })
     })
   })
-
+  
   const getValueWithMonetaryMask = (
     value: number,
     locale: string,
