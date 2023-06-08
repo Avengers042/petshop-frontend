@@ -5,13 +5,18 @@ interface ResponseShoppingCart {
   data: ShoppingCart
 }
 
+interface ResponseShoppingCartList {
+  statusCode: string
+  data: ShoppingCart[]
+}
+
 interface ShoppingCart {
   shoppingCartId?: number
   productId?: number
   amount?: number
 }
 
-export async function findAllShoppingCart (): Promise<ResponseShoppingCart> {
+export async function findAllShoppingCart (): Promise<ResponseShoppingCartList> {
   const response = api.get('/shoppingCart')
     .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
