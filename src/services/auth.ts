@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid'
 import { type Address, type User } from '../contexts/SignUpContext'
 import { addUser } from '../services/user.service'
 import { addAddress } from '../services/address.service'
+import { addShoppingCart } from '../services/shopping-cart.service'
 
 interface ReturnSignIn {
   token: string
@@ -22,9 +23,13 @@ export const signInRequest = async ({ email, password }: User): Promise<ReturnSi
 export const signUpRequest = async (user: User, address: Address): Promise<ReturnSignUp> => {
   const userToAdd: User = user
 
-  const { data } = await addAddress(address)
-  
-  userToAdd.addressId = data.addressId
+  const { data: addressData } = await addAddress(address)
+
+  userToAdd.addressId = addressData.addressId
+
+  const { data: shoppingCartData } = await addShoppingCart({})
+
+  userToAdd.shoppingCartId = shoppingCartData.shoppingCartId
 
   return await addUser(userToAdd)
 }

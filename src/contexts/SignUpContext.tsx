@@ -13,6 +13,7 @@ export interface User {
   birthday?: Date
   password?: string
   addressId?: number
+  shoppingCartId?: number
 }
 
 export interface Address {
