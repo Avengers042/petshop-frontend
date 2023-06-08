@@ -8,7 +8,6 @@ import { LazyImage } from '../../components/lazy-image'
 import { NavBar } from '../../components/navbar'
 
 import { findProduct } from '../../services/product.service'
-import { findImage } from '../../services/image.service'
 
 import './product-item.css'
 import { updateShoppingCart } from '../../services/shopping-cart.service'
@@ -18,25 +17,26 @@ interface Product {
   productId?: number
   name?: string
   description?: string
+  price?: number
   supplierId?: number
   imageId?: number
   categoryId?: number
 }
 
-interface Image {
-  imageId?: number
-  imageName?: string
-  imageAlt?: string
-}
+// interface Image {
+//   imageId?: number
+//   imageName?: string
+//   imageAlt?: string
+// }
 
 export const ProductItem = (): JSX.Element => {
   const [product, setProduct] = createSignal<Product>({})
-  const [image, setImage] = createSignal<Image>({})
+  // const [image, setImage] = createSignal<Image>({})
   const [amount, setAmount] = createSignal(0)
 
   onMount(() => {
     void findProduct(1).then(res => setProduct(res.data))
-    void findImage(1).then(res => setImage(res.data))
+    // void findImage(1).then(res => setImage(res.data))
   })
 
   const handleAmount = (event: any): void => {
@@ -65,8 +65,8 @@ export const ProductItem = (): JSX.Element => {
         <div class="product-header">
           <div class="image-product">
             <LazyImage
-              alt={image().imageAlt ?? ''}
-              url={image().imageName ?? ''}
+              url="granplus-dog_tzvqbg"
+              alt="Ração para cachorro adulto"
               type="remote"
             />
           </div>
@@ -75,31 +75,6 @@ export const ProductItem = (): JSX.Element => {
 
             <div class="product-header-main">
               <Form>
-                {/* <div class="weight">
-                  <p>Tamanhos</p>
-                  <FormField
-                    id="weight-10"
-                    type="radio"
-                    text="10 kg"
-                    name="weight"
-                    required
-                  />
-                  <FormField
-                    id="weight-15"
-                    type="radio"
-                    text="15 kg"
-                    name="weight"
-                    required
-                  />
-                  <FormField
-                    id="weight-20"
-                    type="radio"
-                    text="20 kg"
-                    name="weight"
-                    required
-                  />
-                </div> */}
-
                 <div class="amount">
                   <FormField
                     id="amount"
@@ -107,6 +82,7 @@ export const ProductItem = (): JSX.Element => {
                     text="Quantidade"
                     value="1"
                     name="amount"
+                    min="1"
                     onChange={handleAmount}
                     required
                   />
@@ -124,8 +100,7 @@ export const ProductItem = (): JSX.Element => {
               </Form>
 
               <div class="price">
-                <p>R$ 119.99</p>
-                <p class="label">10% OFF</p>
+                <p>R$ {product().price}</p>
               </div>
             </div>
           </div>
