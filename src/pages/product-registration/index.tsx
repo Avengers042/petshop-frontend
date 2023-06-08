@@ -11,6 +11,7 @@ import { NavBar } from '../../components/navbar'
 
 import { addAddress } from '../../services/address.service'
 import { addProduct } from '../../services/product.service'
+import { addStock } from '../../services/stock.service'
 import { addSupplier } from '../../services/supplier.service'
 
 import './product-registration.css'
@@ -19,9 +20,15 @@ interface Product {
   productId?: number
   name?: string
   description?: string
+  price?: number
   supplierId?: number
   imageId?: number
   categoryId?: number
+}
+
+interface Stock {
+  productId?: number
+  amount?: number
 }
 
 interface Category {
@@ -53,6 +60,7 @@ export const ProductRegistration = (): JSX.Element => {
   const product: Product = {}
   const supplier: Supplier = {}
   const address: Address = {}
+  const stock: Stock = {}
 
   // TODO: Montar as categorias
   // const [categories, setCategories] = createSignal<Category[]>([])
@@ -104,19 +112,17 @@ export const ProductRegistration = (): JSX.Element => {
     product.name = event.target.value
   }
 
-  // const handleProductAmount = (event: any): void => {
-  //   product.amount = event.target.value
-  //   console.log('product.amount: ', product.amount)
-  // }
+  const handleProductAmount = (event: any): void => {
+    stock.amount = event.target.value
+  }
 
   const handleProductDescription = (event: any): void => {
     product.description = event.target.value
   }
 
-  // const handleProductPrice = (event: any): void => {
-  //   product.price = event.target.value
-  //   console.log('product.price: ', product.price)
-  // }
+  const handleProductPrice = (event: any): void => {
+    product.price = event.target.value
+  }
 
   const handleProductCategory = (event: any): void => {
     product.categoryId = event.target.value
@@ -175,7 +181,9 @@ export const ProductRegistration = (): JSX.Element => {
     product.supplierId = supplierData.supplierId
     product.imageId = 1
 
-    await addProduct(product)
+    const { data: productData } = await addProduct(product)
+    stock.productId = productData.productId
+    void addStock(stock)
   }
 
   return (
@@ -211,7 +219,7 @@ export const ProductRegistration = (): JSX.Element => {
                 type="number"
                 text="Quantidade"
                 value="1"
-                // onChange={handleProductAmount}
+                onChange={handleProductAmount}
                 className="number"
                 required
               />
@@ -235,7 +243,7 @@ export const ProductRegistration = (): JSX.Element => {
                 text="Preço do produto"
                 step="0.01"
                 value="0"
-                // onChange={handleProductPrice}
+                onChange={handleProductPrice}
                 required
               />
               <Selection name="category" id="category" text="Categoria" onChange={handleProductCategory} >
