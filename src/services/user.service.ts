@@ -84,3 +84,11 @@ export async function loginUser (user: User): Promise<ResponseLogin> {
 
   return await response
 }
+
+export async function logoutUser (user: User): Promise<ResponseLogin> {
+  const response = api.post('/logout', user)
+    .then(res => { return res })
+    .catch((err) => { return err })
+
+  return await response
+}
