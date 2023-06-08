@@ -5,6 +5,11 @@ interface ResponseAddress {
   data: Address
 }
 
+interface ResponseAddressList {
+  statusCode: string
+  data: Address[]
+}
+
 interface Address {
   addressId?: number
   number?: number
@@ -15,7 +20,7 @@ interface Address {
   complement?: string
 }
 
-export async function findAllAddresses (): Promise<ResponseAddress> {
+export async function findAllAddresses (): Promise<ResponseAddressList> {
   const response = api.get('/addresses')
     .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
