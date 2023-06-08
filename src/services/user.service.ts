@@ -10,6 +10,11 @@ interface ResponseUserList {
   data: User[]
 }
 
+interface ResponseLogin {
+  access_token: string
+  token_type: string
+}
+
 interface User {
   userId?: number
   firstName?: string
@@ -72,9 +77,7 @@ export async function deleteUser (id: number): Promise<ResponseUser> {
   return await response
 }
 
-export async function loginUser (user: User): Promise<ResponseUser> {
-  void api.get('/sanctum/csrf-cookie')
-
+export async function loginUser (user: User): Promise<ResponseLogin> {
   const response = api.post('/login', user)
     .then(res => { return res })
     .catch((err) => { return err })

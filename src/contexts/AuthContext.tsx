@@ -36,7 +36,7 @@ export const AuthProvider = (props: any): JSX.Element => {
   createEffect(() => {
     const { petshop_token: token } = parseCookies()
 
-    if (token.length > 0) {
+    if (token !== undefined) {
       recoverUserInformation()
         .then((response) => {
           setUser(response)
@@ -52,7 +52,7 @@ export const AuthProvider = (props: any): JSX.Element => {
   async function signIn ({ email, password }: SignInData): Promise<void> {
     const { token, user } = await signInRequest({ email, password })
 
-    setCookie(null, 'petshop_token', token, {
+    setCookie(null, 'petshop_token', `${token.token_type} ${token.access_token}`, {
       maxAge: 60 * 60 * 1, // 1 hora,
       sameSite: 'lax',
       secure: true
