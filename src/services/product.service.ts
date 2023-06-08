@@ -5,6 +5,11 @@ interface ResponseProduct {
   data: Product
 }
 
+interface ResponseProductList {
+  statusCode: string
+  data: Product[]
+}
+
 interface Product {
   productId?: number
   name?: string
@@ -15,7 +20,7 @@ interface Product {
   categoryId?: number
 }
 
-export async function findAllProducts (): Promise<ResponseProduct> {
+export async function findAllProducts (): Promise<ResponseProductList> {
   const response = api.get('/products')
     .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
