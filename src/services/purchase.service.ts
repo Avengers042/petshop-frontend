@@ -7,16 +7,11 @@ interface ResponsePurchase {
 
 interface Purchase {
   purchaseId?: number
-  productId?: number
+  amount?: number
+  shoppingCartId?: number
   userId?: number
+  productId?: number
 }
-
-// Nova interface, esperando atualização no back
-// interface Purchase {
-//   purchaseId?: number
-//   userId?: number
-//   productsId?: number[]
-// }
 
 export async function findAllPurchases (): Promise<ResponsePurchase> {
   const response = api.get('/purchases')
@@ -47,7 +42,7 @@ export async function updatePurchase (purchase: Purchase): Promise<ResponsePurch
 
   const id = purchase.purchaseId ?? 0
 
-  if (purchase.purchaseId != null && purchase.productId != null && purchase.userId != null) {
+  if (purchase.purchaseId != null && purchase.amount != null && purchase.shoppingCartId != null && purchase.productId != null && purchase.userId != null) {
     response = api.put(`/purchases/${id}`, purchase)
       .then((res) => { return { status: res.status, data: res.data } })
       .catch((err) => { return err })
