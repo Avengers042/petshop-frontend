@@ -5,6 +5,11 @@ interface ResponsePurchase {
   data: Purchase
 }
 
+interface ResponsePurchaseList {
+  statusCode: string
+  data: Purchase[]
+}
+
 interface Purchase {
   purchaseId?: number
   amount?: number
@@ -13,7 +18,7 @@ interface Purchase {
   productId?: number
 }
 
-export async function findAllPurchases (): Promise<ResponsePurchase> {
+export async function findAllPurchases (): Promise<ResponsePurchaseList> {
   const response = api.get('/purchases')
     .then((res) => { return { statusCode: res.status, data: res.data } })
     .catch((err) => { return err })
