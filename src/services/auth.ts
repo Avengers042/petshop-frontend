@@ -33,9 +33,10 @@ export const signUpRequest = async (user: User, address: Address): Promise<Retur
 
   userToAdd.addressId = addressData.addressId
 
-  const { data: shoppingCartData } = await addShoppingCart({})
-
-  userToAdd.shoppingCartId = shoppingCartData.shoppingCartId
+  if (user.shoppingCartId !== undefined) {
+    const { data: shoppingCartData } = await addShoppingCart({})
+    userToAdd.shoppingCartId = shoppingCartData.shoppingCartId
+  }
 
   return await addUser(userToAdd)
 }
