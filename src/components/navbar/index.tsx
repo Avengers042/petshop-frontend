@@ -31,9 +31,6 @@ export const NavBar = (): JSX.Element => {
           </div>
 
           <nav>
-            <li>
-              <a href="#">Serviços</a>
-            </li>
             <li class="dropdown">
               <a href="/">
                 Produtos <RiSystemArrowDropDownFill />
@@ -46,12 +43,6 @@ export const NavBar = (): JSX.Element => {
                   <a href="/product-registration">Cadastrar produtos</a>
                 </li>
               </ul>
-            </li>
-            <li>
-              <a href="#">Categorias</a>
-            </li>
-            <li>
-              <a href="#">Promoções</a>
             </li>
           </nav>
         </div>
