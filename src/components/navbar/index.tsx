@@ -1,6 +1,7 @@
 import { AiOutlineSearch } from 'solid-icons/ai'
 import { RiSystemArrowDropDownFill } from 'solid-icons/ri'
 import { onMount, type JSX } from 'solid-js'
+import { useNavigate } from 'solid-start/router'
 
 import { LazyImage } from '../../components/lazy-image'
 
@@ -12,21 +13,27 @@ import { logoutUser } from '../../services/user.service'
 import { Button } from '../button'
 
 import './header.css'
-import { useNavigate } from 'solid-start/router'
-import { destroyCookie } from 'nookies'
 
 export const NavBar = (): JSX.Element => {
   const navigate = useNavigate()
 
   onMount(() => {
     const isLogged = Boolean(localStorage.getItem('@EPETAuth:user_email'))
-    const shoppingCart = document.getElementById('shopping-cart-link')
+
     const profileLogged = document.getElementById('profile-logged')
     const profileNotLogged = document.getElementById('profile-not-logged')
+
+    const shoppingCart = document.getElementById('shopping-cart-link')
+    const dropdownLogged = document.getElementById('dropdown-logged')
+    const dropdownNotLogged = document.getElementById('dropdown-not-logged')
 
     if (!isLogged) {
       if (shoppingCart != null) {
         shoppingCart.outerHTML = ''
+      }
+
+      if (dropdownLogged != null) {
+        dropdownLogged.outerHTML = ''
       }
 
       if (profileLogged != null) {
@@ -35,6 +42,10 @@ export const NavBar = (): JSX.Element => {
     } else {
       if (profileNotLogged != null) {
         profileNotLogged.outerHTML = ''
+      }
+
+      if (dropdownNotLogged != null) {
+        dropdownNotLogged.outerHTML = ''
       }
     }
   })
@@ -65,7 +76,20 @@ export const NavBar = (): JSX.Element => {
             </button>
           </div>
 
-          <nav>
+          <nav id="dropdown-not-logged">
+            <li class="dropdown">
+              <a href="/">
+                Produtos <RiSystemArrowDropDownFill />
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/">Listagem de produtos</a>
+                </li>
+              </ul>
+            </li>
+          </nav>
+
+          <nav id="dropdown-logged">
             <li class="dropdown">
               <a href="/">
                 Produtos <RiSystemArrowDropDownFill />
