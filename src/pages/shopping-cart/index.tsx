@@ -39,9 +39,11 @@ export const ShoppingCart = (): JSX.Element => {
   const [products, setProducts] = createSignal<Product[]>([])
   const [purchases, setPurchases] = createSignal<Purchase[]>([])
 
+  const userId = localStorage.getItem('@EPETAuth:user_id') ?? null
+
   onMount(() => {
     void findAllPurchases().then(res => {
-      setPurchases(res.data.filter(purchase => purchase.userId === 26))
+      setPurchases(res.data.filter(purchase => purchase.userId?.toString() === userId))
 
       purchases().forEach(purchase => {
         void findAllProducts().then(res => {

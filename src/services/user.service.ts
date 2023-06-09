@@ -1,3 +1,5 @@
+import { destroyCookie } from 'nookies'
+
 import api from './api'
 
 interface ResponseUser {
@@ -89,6 +91,12 @@ export async function logoutUser (user: User): Promise<ResponseLogin> {
   const response = api.post('/logout', user)
     .then(res => { return res })
     .catch((err) => { return err })
+
+  localStorage.removeItem('@EPETAuth:user_id')
+  localStorage.removeItem('@EPETAuth:user_email')
+  localStorage.removeItem('@EPETAuth:token')
+
+  destroyCookie(null, 'petshop_token', {})
 
   return await response
 }

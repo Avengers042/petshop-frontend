@@ -76,6 +76,7 @@ export const AuthProvider = (props: any): JSX.Element => {
 
     api.defaults.headers.Authorization = `Bearer ${token.data.access_token}`
 
+    localStorage.setItem('@EPETAuth:user_id', JSON.stringify(token.data.id))
     localStorage.setItem('@EPETAuth:user_email', JSON.stringify(user.email))
     localStorage.setItem('@EPETAuth:token', token.data.access_token)
 

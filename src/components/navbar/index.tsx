@@ -41,14 +41,7 @@ export const NavBar = (): JSX.Element => {
 
   function logout (): void {
     void logoutUser({ email: localStorage.getItem('@EPETAuth:user_email')?.replace(/["]/g, '') ?? '' })
-      .then(() => {
-        localStorage.removeItem('@EPETAuth:user_email')
-        localStorage.removeItem('@EPETAuth:token')
-
-        destroyCookie(null, 'petshop_token', {})
-
-        navigate('/login', { replace: true })
-      })
+      .then(() => { navigate('/login', { replace: true }) })
   }
 
   return (
