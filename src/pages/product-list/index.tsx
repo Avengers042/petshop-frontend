@@ -25,7 +25,7 @@ export const ProductList = (): JSX.Element => {
     // void findAllImages().then(res => setImages(res.data))
   })
 
-  function redirectToProduct (id: number): void {
+  function redirectToProduct(id: number): void {
     navigate(`/product-item?productId=${id}`, { replace: true })
   }
 
@@ -62,10 +62,8 @@ export const ProductList = (): JSX.Element => {
                                 type="remote"
                               />
                             </Suspense>
-                            <h2 class="card-title">
-                              <button onClick={() => { redirectToProduct(product.productId) }}>{product.name}</button>
-                            </h2>
-                            <h3 class="card-subtitle">{product.description}</h3>
+                            <h2 class="card-title" onClick={() => { redirectToProduct(product.productId) }}>{product.name}</h2>
+                            <h3 class="card-subtitle" onClick={() => { redirectToProduct(product.productId) }}>{product.description}</h3>
                             {/* <div class="card-text">
                               <p>R$ {product.price}</p>
                               <p class="card-label">{product.discount}% OFF</p>
