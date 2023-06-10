@@ -12,8 +12,6 @@ interface ResponseShoppingCartList {
 
 interface ShoppingCart {
   shoppingCartId?: number
-  productId?: number
-  amount?: number
 }
 
 export async function findAllShoppingCart (): Promise<ResponseShoppingCartList> {
@@ -45,7 +43,7 @@ export async function updateShoppingCart (shoppingCart: ShoppingCart): Promise<R
 
   const id = shoppingCart.shoppingCartId ?? 0
 
-  if (shoppingCart.shoppingCartId != null && shoppingCart.productId != null && shoppingCart.amount != null) {
+  if (shoppingCart.shoppingCartId != null) {
     response = api.put(`/carts/${id}`, shoppingCart)
       .then((res) => { return { status: res.status, data: res.data } })
       .catch((err) => { return err })
