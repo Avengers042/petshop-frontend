@@ -1,4 +1,4 @@
-import { For, Suspense, createSignal, type JSX } from 'solid-js'
+import { For, Suspense, createMemo, createSignal, type JSX } from 'solid-js'
 
 import { Footer } from '../../components/footer'
 import { LazyImage } from '../../components/lazy-image'
@@ -10,8 +10,7 @@ import { Tr } from '../../components/table/tr'
 import { Td } from '../../components/table/tr/td'
 import { Th } from '../../components/table/tr/th'
 
-import { findAllProducts } from '../../services/product.service'
-import { findAllPurchases } from '../../services/purchase.service'
+import ListProducts from './products-cart.json'
 
 import './shopping-cart.css'
 
@@ -26,53 +25,61 @@ interface Product {
   categoryId?: number
 }
 
-interface Purchase {
-  purchaseId?: number
-  amount?: number
-  shoppingCartId?: number
-  userId?: number
-  productId?: number
-}
+// interface Purchase {
+//   purchaseId?: number
+//   amount?: number
+//   shoppingCartId?: number
+//   userId?: number
+//   productId?: number
+// }
 
 export const ShoppingCart = (): JSX.Element => {
   const [getTotalValue, setTotalValue] = createSignal(0)
-  const [purchases, setPurchases] = createSignal<Purchase[]>([])
-  const [products] = createSignal<Product[]>([])
+  // const [purchases, setPurchases] = createSignal<Purchase[]>([])
+  // const [products] = createSignal<Product[]>([])
+  const products = createMemo<Product[]>(() => ListProducts, [])
 
-  const userId = localStorage.getItem('@EPETAuth:user_id') ?? null
-  void findAllPurchases().then(res => {
-    setPurchases(res.data.filter(purchase => purchase.userId?.toString() === userId))
-    void findProducts()
+  // const userId = localStorage.getItem('@EPETAuth:user_id') ?? null
+
+  // void findAllPurchases().then(res => {
+  //   setPurchases(res.data.filter(purchase => purchase.userId?.toString() === userId))
+  //   void findProducts()
+  // })
+
+  // const findProducts = async (): Promise<void> => {
+  //   const allProducts = await findAllProducts()
+
+  //   purchases().forEach(purchase => {
+  //     const filteredProduct: Product = allProducts.data.filter(product => product.productId === purchase.productId)[0]
+
+  //     if (filteredProduct !== undefined) {
+  //       filteredProduct.amount = purchase.amount ?? 0
+  //       products().push(filteredProduct)
+
+  products().forEach(product => {
+    Boolean(product.price) && Boolean(product.amount)
+      ? setTotalValue(getTotalValue() + (product.price ?? 0) * (product.amount ?? 0))
+      : setTotalValue(0)
   })
+  //   }
+  // })
 
-  const findProducts = async (): Promise<void> => {
-    const allProducts = await findAllProducts()
+  //   console.log('internal products: ', products())
+  // }
 
-    purchases().forEach(purchase => {
-      const filteredProduct: Product = allProducts.data.filter(product => product.productId === purchase.productId)[0]
-
-      if (filteredProduct !== undefined) {
-        filteredProduct.amount = purchase.amount ?? 0
-        products().push(filteredProduct)
-
-        products().forEach(product => {
-          Boolean(product.price) && Boolean(product.amount)
-            ? setTotalValue(getTotalValue() + (product.price ?? 0) * (product.amount ?? 0))
-            : setTotalValue(0)
-        })
-      }
-    })
-
-    console.log('internal products: ', products())
-  }
-
-  console.log('external products: ', products())
+  // console.log('external products: ', products())
 
   const getValueWithMonetaryMask = (
     value: number,
     locale: string,
     currency: string
   ): string => value.toLocaleString(locale, { style: 'currency', currency })
+
+  const getTotalValueProduct = (product: Product): number => {
+    return Boolean(product.price) && Boolean(product.amount)
+      ? (product.price ?? 0) * (product.amount ?? 0)
+      : 0
+  }
 
   return (
     <>
@@ -122,7 +129,7 @@ export const ShoppingCart = (): JSX.Element => {
                     <Td>
                       <p>
                         {getValueWithMonetaryMask(
-                          getTotalValue(),
+                          getTotalValueProduct(product),
                           'pt-BR',
                           'BRL'
                         )}

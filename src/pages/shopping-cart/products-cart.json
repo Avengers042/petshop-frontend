@@ -1,0 +1,53 @@
+[
+  {
+    
+    "productId": 1,
+    "name": "Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz",
+    "description": "Ração para cachorro adulto",
+    "price": 59.90,
+    "amount": 5,
+    "supplierId": 1,
+    "imageId": 1,
+    "categoryId": 1
+  },
+  {
+    "productId": 2,
+    "name": "Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz",
+    "description": "Ração para cachorro adulto",
+    "price": 119.99,
+    "amount": 10,
+    "supplierId": 1,
+    "imageId": 1,
+    "categoryId": 1
+  },
+  {
+    "productId": 3,
+    "name": "Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz",
+    "description": "Ração para cachorro adulto",
+    "price": 100,
+    "amount": 1,
+    "supplierId": 1,
+    "imageId": 1,
+    "categoryId": 1
+  },
+  {
+    "productId": 4,
+    "name": "Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz",
+    "description": "Ração para cachorro adulto",
+    "price": 213.30,
+    "amount": 30,
+    "supplierId": 1,
+    "imageId": 1,
+    "categoryId": 1
+  },
+  {
+    "productId": 5,
+    "name": "Ração GranPlus Menu para Cães Adultos de Porte Mini Sabor Carne e Arroz",
+    "description": "Ração para cachorro adulto",
+    "price": 2.90,
+    "amount": 3,
+    "supplierId": 1,
+    "imageId": 1,
+    "categoryId": 1
+  }
+]
