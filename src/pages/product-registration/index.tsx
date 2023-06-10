@@ -382,7 +382,7 @@ export const ProductRegistration = (): JSX.Element => {
             />
           </div>
 
-          <Button type="button" text="Cadastrar" className="btn btn-black" onClick={registerProduct} />
+          <Button type="button" text="Cadastrar" className="btn btn-black" onClick={() => registerProduct} />
         </Form>
       </main>
       <Footer />
