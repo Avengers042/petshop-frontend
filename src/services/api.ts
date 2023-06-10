@@ -17,8 +17,6 @@ if (token !== undefined) {
 }
 
 api.interceptors.request.use(config => {
-  console.log(config)
-
   return config
 })
 

@@ -1,4 +1,5 @@
-import { onMount, type JSX, createSignal } from 'solid-js'
+import { createSignal, type JSX } from 'solid-js'
+import { useNavigate } from 'solid-start/router'
 
 import { Button } from '../../components/button'
 import { Footer } from '../../components/footer'
@@ -8,10 +9,10 @@ import { LazyImage } from '../../components/lazy-image'
 import { NavBar } from '../../components/navbar'
 
 import { findProduct } from '../../services/product.service'
+import { addPurchase } from '../../services/purchase.service'
+import { findUser } from '../../services/user.service'
 
 import './product-item.css'
-import { updateShoppingCart } from '../../services/shopping-cart.service'
-import { useNavigate } from 'solid-start/router'
 
 interface Product {
   productId?: number
@@ -32,29 +33,34 @@ interface Product {
 export const ProductItem = (): JSX.Element => {
   const [product, setProduct] = createSignal<Product>({})
   // const [image, setImage] = createSignal<Image>({})
-  const [amount, setAmount] = createSignal(0)
+  const [amount, setAmount] = createSignal(1)
 
-  onMount(() => {
-    void findProduct(1).then(res => setProduct(res.data))
-    // void findImage(1).then(res => setImage(res.data))
-  })
+  const userId = Number(localStorage.getItem('@EPETAuth:user_id')) ?? null
+
+  setTimeout(() => {
+    const url = new URL(window.location.href)
+    const productId = Number(url.searchParams.get('productId')) ?? null
+
+    void findProduct(productId).then(res => setProduct(res.data))
+  }, 1)
+
+  const navigate = useNavigate()
 
   const handleAmount = (event: any): void => {
     setAmount(event.target.value)
   }
 
   function buyProduct (): void {
-    // funcao de comprar produto passando o mesmo
-    const navigate = useNavigate()
-    navigate('/shopping-cart', { replace: true })
+    void findUser(userId).then(res => {
+      void addPurchase({ amount: amount(), shoppingCartId: res.data.shoppingCartId, userId, productId: product().productId })
+
+      navigate('/shopping-cart', { replace: true })
+    })
   }
 
   function addToCart (): void {
-    void updateShoppingCart({
-      // shoppingCartId: user.shoppingCartId,
-      shoppingCartId: 1,
-      productId: product().productId,
-      amount: amount()
+    void findUser(userId).then(res => {
+      void addPurchase({ amount: amount(), shoppingCartId: res.data.shoppingCartId, userId, productId: product().productId })
     })
   }
 

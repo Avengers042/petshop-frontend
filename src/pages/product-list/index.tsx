@@ -10,17 +10,24 @@ import { findAllCategories } from '../../services/category.service'
 import { findAllProducts } from '../../services/product.service'
 
 import './product-list.css'
+import { useNavigate } from 'solid-start/router'
 
 export const ProductList = (): JSX.Element => {
   const [categories, setCategories]: any = createSignal()
   const [products, setProducts]: any = createSignal()
   // const [images, setImages]: any = createSignal()
 
+  const navigate = useNavigate()
+
   onMount(() => {
     void findAllCategories().then(res => setCategories(res.data))
     void findAllProducts().then(res => setProducts(res.data))
     // void findAllImages().then(res => setImages(res.data))
   })
+
+  function redirectToProduct (id: number): void {
+    navigate(`/product-item?productId=${id}`, { replace: true })
+  }
 
   return (
     <>
@@ -55,10 +62,8 @@ export const ProductList = (): JSX.Element => {
                                 type="remote"
                               />
                             </Suspense>
-                            <h2 class="card-title">
-                              <a href="/product-item">{product.name}</a>
-                            </h2>
-                            <h3 class="card-subtitle">{product.description}</h3>
+                            <h2 class="card-title" onClick={() => { redirectToProduct(product.productId) }}>{product.name}</h2>
+                            <h3 class="card-subtitle" onClick={() => { redirectToProduct(product.productId) }}>{product.description}</h3>
                             {/* <div class="card-text">
                               <p>R$ {product.price}</p>
                               <p class="card-label">{product.discount}% OFF</p>
