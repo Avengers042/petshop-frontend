@@ -1,4 +1,4 @@
-import { For, Suspense, createSignal, onMount, type JSX } from 'solid-js'
+import { For, Suspense, createSignal, type JSX } from 'solid-js'
 
 import { Footer } from '../../components/footer'
 import { LazyImage } from '../../components/lazy-image'
@@ -36,30 +36,37 @@ interface Purchase {
 
 export const ShoppingCart = (): JSX.Element => {
   const [getTotalValue, setTotalValue] = createSignal(0)
-  const [products, setProducts] = createSignal<Product[]>([])
   const [purchases, setPurchases] = createSignal<Purchase[]>([])
+  const [products] = createSignal<Product[]>([])
 
   const userId = localStorage.getItem('@EPETAuth:user_id') ?? null
-
-  onMount(() => {
-    void findAllPurchases().then(res => {
-      setPurchases(res.data.filter(purchase => purchase.userId?.toString() === userId))
-
-      purchases().forEach(purchase => {
-        void findAllProducts().then(res => {
-          setProducts(res.data.filter(product => product.productId === purchase.productId))
-
-          products().forEach(product => {
-            product.amount = purchase.amount ?? 0
-
-            Boolean(product.price) && Boolean(product.amount)
-              ? setTotalValue(getTotalValue() + (product.price ?? 0) * (product.amount ?? 0))
-              : setTotalValue(0)
-          })
-        })
-      })
-    })
+  void findAllPurchases().then(res => {
+    setPurchases(res.data.filter(purchase => purchase.userId?.toString() === userId))
+    void findProducts()
   })
+
+  const findProducts = async (): Promise<void> => {
+    const allProducts = await findAllProducts()
+
+    purchases().forEach(purchase => {
+      const filteredProduct: Product = allProducts.data.filter(product => product.productId === purchase.productId)[0]
+
+      if (filteredProduct !== undefined) {
+        filteredProduct.amount = purchase.amount ?? 0
+        products().push(filteredProduct)
+
+        products().forEach(product => {
+          Boolean(product.price) && Boolean(product.amount)
+            ? setTotalValue(getTotalValue() + (product.price ?? 0) * (product.amount ?? 0))
+            : setTotalValue(0)
+        })
+      }
+    })
+
+    console.log('internal products: ', products())
+  }
+
+  console.log('external products: ', products())
 
   const getValueWithMonetaryMask = (
     value: number,
@@ -86,7 +93,7 @@ export const ShoppingCart = (): JSX.Element => {
             </Thead>
             <Tbody>
               <For each={products()}>
-                {(product) => (
+                {product => (
                   <Tr>
                     <Td>
                       <Suspense fallback={<div>Loading...</div>}>
