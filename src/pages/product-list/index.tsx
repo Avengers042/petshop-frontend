@@ -25,7 +25,7 @@ export const ProductList = (): JSX.Element => {
     // void findAllImages().then(res => setImages(res.data))
   })
 
-  function redirectToProduct(id: number): void {
+  function redirectToProduct (id: number): void {
     navigate(`/product-item?productId=${id}`, { replace: true })
   }
 
