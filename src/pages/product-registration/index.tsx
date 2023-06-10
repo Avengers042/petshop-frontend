@@ -68,7 +68,7 @@ export const ProductRegistration = (): JSX.Element => {
   //   void findAllCategories().then(res => setCategories(res.data))
   // })
 
-  product.categoryId = 0
+  product.categoryId = 1
 
   const categories: Category[] = [
     { categoryId: 0, name: 'Cachorros' },
