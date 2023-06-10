@@ -33,7 +33,7 @@ interface Product {
 export const ProductItem = (): JSX.Element => {
   const [product, setProduct] = createSignal<Product>({})
   // const [image, setImage] = createSignal<Image>({})
-  const [amount, setAmount] = createSignal(0)
+  const [amount, setAmount] = createSignal(1)
 
   const userId = Number(localStorage.getItem('@EPETAuth:user_id')) ?? null
 
@@ -44,20 +44,18 @@ export const ProductItem = (): JSX.Element => {
     void findProduct(productId).then(res => setProduct(res.data))
   }, 1)
 
+  const navigate = useNavigate()
+
   const handleAmount = (event: any): void => {
     setAmount(event.target.value)
   }
 
-  async function buyProduct (): Promise<void> {
-    await findUser(userId).then(res => {
-      if (res.data.shoppingCartId !== undefined) {
-        void addPurchase({ amount: amount(), shoppingCartId: res.data.shoppingCartId, userId, productId: product().productId })
-      }
+  function buyProduct (): void {
+    void findUser(userId).then(res => {
+      void addPurchase({ amount: amount(), shoppingCartId: res.data.shoppingCartId, userId, productId: product().productId })
+
+      navigate('/shopping-cart', { replace: true })
     })
-
-    const navigate = useNavigate()
-
-    navigate('/shopping-cart', { replace: true })
   }
 
   function addToCart (): void {
@@ -97,7 +95,7 @@ export const ProductItem = (): JSX.Element => {
                 </div>
 
                 <div class="buttons">
-                  <Button type="button" text="Comprar" className="btn btn-black" onClick={() => buyProduct} />
+                  <Button type="button" text="Comprar" className="btn btn-black" onClick={buyProduct} />
                   <Button
                     type="button"
                     text="Adicionar ao carrinho"
