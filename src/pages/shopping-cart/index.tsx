@@ -1,5 +1,6 @@
 import { For, Suspense, createMemo, createSignal, type JSX } from 'solid-js'
 
+import { Button } from '../../components/button'
 import { Footer } from '../../components/footer'
 import { LazyImage } from '../../components/lazy-image'
 import { NavBar } from '../../components/navbar'
@@ -9,6 +10,9 @@ import { Thead } from '../../components/table/thead'
 import { Tr } from '../../components/table/tr'
 import { Td } from '../../components/table/tr/td'
 import { Th } from '../../components/table/tr/th'
+
+import { buyItems } from '../../services/shopping-cart.service'
+import { findAllPurchases } from '../../services/purchase.service'
 
 import ListProducts from './products-cart.json'
 
@@ -25,26 +29,26 @@ interface Product {
   categoryId?: number
 }
 
-// interface Purchase {
-//   purchaseId?: number
-//   amount?: number
-//   shoppingCartId?: number
-//   userId?: number
-//   productId?: number
-// }
+interface Purchase {
+  purchaseId?: number
+  amount?: number
+  shoppingCartId?: number
+  userId?: number
+  productId?: number
+}
 
 export const ShoppingCart = (): JSX.Element => {
   const [getTotalValue, setTotalValue] = createSignal(0)
-  // const [purchases, setPurchases] = createSignal<Purchase[]>([])
+  const [purchases, setPurchases] = createSignal<Purchase[]>([])
   // const [products] = createSignal<Product[]>([])
   const products = createMemo<Product[]>(() => ListProducts, [])
 
-  // const userId = localStorage.getItem('@EPETAuth:user_id') ?? null
+  const userId = localStorage.getItem('@EPETAuth:user_id') ?? null
 
-  // void findAllPurchases().then(res => {
-  //   setPurchases(res.data.filter(purchase => purchase.userId?.toString() === userId))
-  //   void findProducts()
-  // })
+  void findAllPurchases().then(res => {
+    setPurchases(res.data.filter(purchase => purchase.userId?.toString() === userId))
+    // void findProducts()
+  })
 
   // const findProducts = async (): Promise<void> => {
   //   const allProducts = await findAllProducts()
@@ -79,6 +83,11 @@ export const ShoppingCart = (): JSX.Element => {
     return Boolean(product.price) && Boolean(product.amount)
       ? (product.price ?? 0) * (product.amount ?? 0)
       : 0
+  }
+
+  function handleBuy (): void {
+    console.log(purchases())
+    void buyItems(purchases())
   }
 
   return (
@@ -143,9 +152,7 @@ export const ShoppingCart = (): JSX.Element => {
           <aside>
             <h1>TOTAL</h1>
             <p>{getValueWithMonetaryMask(getTotalValue(), 'pt-BR', 'BRL')}</p>
-            <a href="#" class="btn btn-black">
-              Comprar
-            </a>
+            <Button type="button" text="Comprar" className="btn btn-black" onClick={handleBuy} />
             <a href="/" class="btn btn-outline-black">
               Escolher mais produtos
             </a>
