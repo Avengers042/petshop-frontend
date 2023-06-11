@@ -1,4 +1,4 @@
-import { createSignal, type JSX } from 'solid-js'
+import { createSignal, onMount, type JSX } from 'solid-js'
 import { useNavigate } from 'solid-start/router'
 
 import { Button } from '../../components/button'
@@ -31,6 +31,23 @@ interface Product {
 // }
 
 export const ProductItem = (): JSX.Element => {
+  onMount(() => {
+    const isLogged = Boolean(localStorage.getItem('@EPETAuth:user_email'))
+
+    const amountLogged = document.getElementById('amount-logged')
+    const purchasesLogged = document.getElementById('purchases-logged')
+
+    if (!isLogged) {
+      if (amountLogged != null) {
+        amountLogged.outerHTML = ''
+      }
+
+      if (purchasesLogged != null) {
+        purchasesLogged.outerHTML = ''
+      }
+    }
+  })
+
   const [product, setProduct] = createSignal<Product>({})
   // const [image, setImage] = createSignal<Image>({})
   const [amount, setAmount] = createSignal(1)
@@ -81,7 +98,7 @@ export const ProductItem = (): JSX.Element => {
 
             <div class="product-header-main">
               <Form>
-                <div class="amount">
+                <div id="amount-logged" class="amount">
                   <FormField
                     id="amount"
                     type="number"
@@ -94,7 +111,7 @@ export const ProductItem = (): JSX.Element => {
                   />
                 </div>
 
-                <div class="buttons">
+                <div id="purchases-logged" class="buttons">
                   <Button type="button" text="Comprar" className="btn btn-black" onClick={buyProduct} />
                   <Button
                     type="button"
